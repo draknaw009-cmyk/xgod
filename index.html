@@ -3,338 +3,447 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ยินดีต้อนรับสู่เว็บไซต์ของฉัน | Portfolio</title>
+  <title>Bangkok Health Medical Center | ศูนย์การแพทย์เฉพาะทาง</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ------------------------------
-       1. ตัวแปรสีและค่าพื้นฐาน
-       ------------------------------ */
     :root {
-      --bg-color: #0f172a;       /* สีพื้นหลังเข้ม */
-      --card-bg: #1e293b;        /* สีพื้นหลังการ์ด */
-      --border-color: #334155;   /* สีกรอบ/เส้นคั่น */
-      --primary: #38bdf8;        /* สีหลัก (Accent ฟ้าสว่าง) */
-      --primary-hover: #0ea5e9;  /* สีเมื่อเมาส์ชี้ */
-      --text-main: #f8fafc;      /* สีข้อความหลัก */
-      --text-muted: #94a3b8;     /* สีข้อความรอง */
-      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --primary: #005a9c;       /* น้ำเงินเข้มทางการแพทย์ */
+      --primary-hover: #004070;
+      --secondary: #00a896;     /* ฟ้าอมเขียวสดชื่น/สุขภาพ */
+      --accent-red: #e63946;     /* แดงสำหรับสายด่วนฉุกเฉิน */
+      --bg-light: #f8fafc;
+      --surface: #ffffff;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(0,0,0,0.06);
+      --radius: 12px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font-family);
-      background-color: var(--bg-color);
-      color: var(--text-main);
+      font-family: 'Sarabun', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
       line-height: 1.6;
     }
 
-    /* ------------------------------
-       2. แถบเมนูด้านบน (Navigation)
-       ------------------------------ */
-    nav {
-      position: sticky;
-      top: 0;
-      background-color: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 16px 24px;
+    /* Top Emergency Bar */
+    .top-bar {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 8px 24px;
+      font-size: 0.85rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
+    }
+    .emergency-hotline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hotline-badge {
+      background-color: var(--accent-red);
+      color: #fff;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
     }
 
-    .nav-brand {
+    /* Navbar */
+    .navbar {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 24px;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-size: 1.4rem;
       font-weight: 700;
-      font-size: 1.2rem;
       color: var(--primary);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-
-    .nav-links {
+    .nav-menu {
       display: flex;
       gap: 20px;
       list-style: none;
     }
-
-    .nav-links a {
-      color: var(--text-muted);
+    .nav-menu a {
       text-decoration: none;
-      font-size: 0.95rem;
+      color: var(--text-dark);
+      font-weight: 500;
       transition: color 0.2s;
     }
+    .nav-menu a:hover { color: var(--primary); }
 
-    .nav-links a:hover {
-      color: var(--primary);
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(0, 90, 156, 0.95), rgba(0, 168, 150, 0.85)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: #ffffff;
+      padding: 80px 24px 100px 24px;
+      text-align: center;
     }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 16px; font-weight: 700; }
+    .hero p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 24px auto; opacity: 0.95; }
 
-    /* ------------------------------
-       3. เลย์เอาต์และระยะห่าง (Layout)
-       ------------------------------ */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 24px;
+    /* Quick Action Cards (วางทับกึ่งกลางระหว่าง Hero กับ Content) */
+    .quick-actions-container {
+      max-width: 1100px;
+      margin: -50px auto 40px auto;
+      padding: 0 20px;
     }
-
-    section {
-      padding: 60px 0;
-      border-bottom: 1px solid var(--border-color);
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
     }
-
-    section:last-of-type {
-      border-bottom: none;
+    .quick-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      border-top: 4px solid var(--secondary);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-dark);
     }
+    .quick-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .quick-icon { font-size: 2rem; margin-bottom: 8px; }
+    .quick-card h3 { font-size: 1.1rem; color: var(--primary); }
 
+    /* Main Container */
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
     .section-title {
+      text-align: center;
       font-size: 1.8rem;
-      margin-bottom: 24px;
-      color: var(--text-main);
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    /* Doctor Finder Filter */
+    .search-box-wrap {
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      gap: 10px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      font-family: inherit;
+    }
+    .search-input:focus { border-color: var(--primary); }
+
+    /* Doctor Grid */
+    .doctor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .doctor-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .doctor-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #e2e8f0;
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    /* ------------------------------
-       4. ส่วนต้อนรับ (Hero Section)
-       ------------------------------ */
-    .hero {
-      text-align: center;
-      padding: 80px 0 60px 0;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--primary);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 4px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
+      justify-content: center;
+      font-size: 2.2rem;
       margin-bottom: 16px;
     }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      line-height: 1.2;
-      margin-bottom: 16px;
-      color: var(--text-main);
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto 28px auto;
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: var(--primary);
-      color: #0f172a;
+    .doctor-name { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
+    .doctor-dept { color: var(--secondary); font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
+    .doctor-bio { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
+    .btn-appoint {
+      width: 100%;
+      padding: 10px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
       font-weight: 600;
-      padding: 10px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
     }
+    .btn-appoint:hover { background: var(--primary-hover); }
 
-    .btn:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-2px);
-    }
-
-    /* ------------------------------
-       5. การ์ดแสดงผลงาน (Projects Grid)
-       ------------------------------ */
-    .grid {
+    /* Packages Section */
+    .package-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
     }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 24px;
-      transition: transform 0.2s, border-color 0.2s;
+    .package-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--primary);
-    }
-
-    .card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      color: var(--text-main);
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .card-tag {
-      display: inline-block;
-      background-color: #334155;
-      color: #cbd5e1;
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-right: 6px;
-    }
-
-    /* ------------------------------
-       6. ป้ายทักษะ (Skill Badges)
-       ------------------------------ */
-    .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill-pill {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      color: var(--text-main);
-    }
-
-    /* ------------------------------
-       7. ส่วนติดต่อและท้ายหน้า (Footer)
-       ------------------------------ */
-    .contact-box {
+    .package-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 20px;
       text-align: center;
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 40px 20px;
     }
+    .package-price { font-size: 1.6rem; font-weight: 700; color: #6ee7b7; margin-top: 6px; }
+    .package-body { padding: 24px; }
+    .package-features { list-style: none; margin-bottom: 20px; font-size: 0.9rem; }
+    .package-features li { padding: 8px 0; border-bottom: 1px dashed var(--border); display: flex; align-items: center; gap: 8px; }
 
-    .contact-box p {
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
+    /* Footer */
     footer {
+      background-color: #0f172a;
+      color: #94a3b8;
+      padding: 50px 24px 20px 24px;
+      margin-top: 60px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 { color: #fff; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; font-size: 0.9rem; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-bottom {
       text-align: center;
-      padding: 40px 20px;
-      color: var(--text-muted);
+      padding-top: 20px;
+      border-top: 1px solid #1e293b;
       font-size: 0.85rem;
-      border-top: 1px solid var(--border-color);
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#" class="nav-brand">xgod.space</a>
-    <ul class="nav-links">
-      <li><a href="#about">เกี่ยวกับฉัน</a></li>
-      <li><a href="#projects">ผลงาน</a></li>
-      <li><a href="#skills">ทักษะ</a></li>
-      <li><a href="#contact">ติดต่อ</a></li>
-    </ul>
+  <!-- Top Emergency Bar -->
+  <div class="top-bar">
+    <div class="emergency-hotline">
+      <span class="hotline-badge">EMERGENCY</span>
+      <span>ศูนย์อุบัติเหตุและฉุกเฉินตลอด 24 ชั่วโมง: โทร <strong>1719</strong></span>
+    </div>
+    <div>
+      <span>🌐 ภาษาไทย | English</span>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <span>🏥</span> Bangkok Health Hospital
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#doctors">ค้นหาแพทย์</a></li>
+        <li><a href="#packages">แพ็กเกจสุขภาพ</a></li>
+        <li><a href="#centers">ศูนย์เฉพาะทาง</a></li>
+        <li><a href="#contact">ติดต่อเรา</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <div class="container">
+  <!-- Hero Header -->
+  <header class="hero">
+    <h1>มาตรฐานการแพทย์สากล เพื่อคุณภาพชีวิตที่ดีของคุณ</h1>
+    <p>พร้อมให้บริการการรักษาและการตรวจวินิจฉัยอย่างแม่นยำด้วยทีมแพทย์เฉพาะทางและเทคโนโลยีทันสมัย</p>
+  </header>
 
-    <!-- Hero Section -->
-    <header class="hero">
-      <span class="hero-badge">🚀 ยินดีต้อนรับสู่เว็บไซต์ของฉัน</span>
-      <h1>สวัสดี! ฉันคือผู้พัฒนาเว็บไซต์</h1>
-      <p>พื้นที่รวบรวมโปรเจกต์ ผลงานสร้างสรรค์ และเรื่องราวที่น่าสนใจ พัฒนาและโฮสต์บนระบบ GitHub Pages 100%</p>
-      <a href="#projects" class="btn">ดูผลงานทั้งหมด</a>
-    </header>
-
-    <!-- About Section -->
-    <section id="about">
-      <h2 class="section-title">👤 เกี่ยวกับฉัน</h2>
-      <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
-        ยินดีต้อนรับทุกคนเข้าสู่เว็บไซต์ส่วนตัวของฉัน เว็บไซต์นี้สร้างขึ้นเพื่อฝึกฝนและพัฒนาทักษะด้าน Web Development 
-        โดยการนำเทคโนโลยี HTML, CSS และ JavaScript มาประยุกต์ใช้งานจริงร่วมกับแพลตฟอร์ม GitHub
-      </p>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2 class="section-title">📂 โปรเจกต์ที่น่าสนใจ</h2>
-      <div class="grid">
-
-        <div class="card">
-          <h3>โปรเจกต์ที่ 1: GitHub Web</h3>
-          <p>สร้างและเผยแพร่หน้าเว็บไซต์ขึ้นสู่ระบบออนไลน์ด้วยบริการ GitHub Pages</p>
-          <div>
-            <span class="card-tag">HTML</span>
-            <span class="card-tag">CSS</span>
-            <span class="card-tag">GitHub</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>โปรเจกต์ที่ 2: ระบบจัดการข้อมูล</h3>
-          <p>เรียนรู้การเชื่อมต่อระบบหลังบ้าน และการจัดเก็บข้อมูลผ่านเทคโนโลยี Cloud</p>
-          <div>
-            <span class="card-tag">Backend</span>
-            <span class="card-tag">API</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>โปรเจกต์ที่ 3: แอปพลิเคชันอัจฉริยะ</h3>
-          <p>การพัฒนาเครื่องมืออำนวยความสะดวกด้วยเทคโนโลยีสมัยใหม่และการเขียนโปรแกรม</p>
-          <div>
-            <span class="card-tag">Automation</span>
-            <span class="card-tag">Tools</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-      <h2 class="section-title">⚡ ทักษะและความสนใจ</h2>
-      <div class="skills-container">
-        <div class="skill-pill">🌐 HTML5 / CSS3</div>
-        <div class="skill-pill">💻 JavaScript</div>
-        <div class="skill-pill">🐙 Git & GitHub</div>
-        <div class="skill-pill">☁️ Cloud & Web Hosting</div>
-        <div class="skill-pill">📱 Responsive Design</div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <h2 class="section-title">📬 ติดต่อพูดคุย</h2>
-      <div class="contact-box">
-        <h3 style="margin-bottom: 10px;">สนใจร่วมงานหรือปรึกษาข้อมูล?</h3>
-        <p>สามารถส่งอีเมลหรือข้อความมาพูดคุยแลกเปลี่ยนไอเดียได้เสมอ</p>
-        <a href="mailto:your-email@example.com" class="btn">ส่งข้อความหาฉัน</a>
-      </div>
-    </section>
-
+  <!-- Quick Action Cards -->
+  <div class="quick-actions-container">
+    <div class="quick-grid">
+      <a href="#doctors" class="quick-card">
+        <div class="quick-icon">👨‍⚕️</div>
+        <h3>ค้นหาแพทย์</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">เลือกดูตารางออกตรวจ</p>
+      </a>
+      <a href="#packages" class="quick-card">
+        <div class="quick-icon">📋</div>
+        <h3>แพ็กเกจสุขภาพ</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">โปรแกรมตรวจสุขภาพประจำปี</p>
+      </a>
+      <a href="#appointment" class="quick-card">
+        <div class="quick-icon">📅</div>
+        <h3>ทำนัดหมาย</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">นัดล่วงหน้าสะดวกรวดเร็ว</p>
+      </a>
+      <a href="#" class="quick-card" onclick="alert('ระบบสายด่วนฉุกเฉิน: 1719 ให้บริการตลอด 24 ชั่วโมง'); return false;">
+        <div class="quick-icon">🚑</div>
+        <h3>บริการฉุกเฉิน 24 ชม.</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">รถพยาบาลเคลื่อนที่เร็ว</p>
+      </a>
+    </div>
   </div>
+
+  <!-- Doctor Search Section -->
+  <section id="doctors" class="container">
+    <h2 class="section-title">ค้นหาแพทย์ผู้เชี่ยวชาญ</h2>
+    <p class="section-subtitle">เลือกค้นหาตามชื่อแพทย์ แผนกการรักษา หรือความเชี่ยวชาญเฉพาะทาง</p>
+
+    <div class="search-box-wrap">
+      <input type="text" id="doctorSearch" class="search-input" placeholder="พิมพ์ชื่อแพทย์ หรือแผนก (เช่น หัวใจ, กระดูก, เด็ก)..." oninput="filterDoctors()">
+    </div>
+
+    <div class="doctor-grid" id="doctorGrid">
+      <!-- ข้อมูลแพทย์จะถูกแสดงผ่าน JavaScript -->
+    </div>
+  </section>
+
+  <!-- Health Packages Section -->
+  <section id="packages" class="container" style="border-top: 1px solid var(--border); padding-top: 60px;">
+    <h2 class="section-title">แพ็กเกจและโปรแกรมตรวจสุขภาพ</h2>
+    <p class="section-subtitle">ดูแลสุขภาพเชิงป้องกันด้วยแพ็กเกจตรวจคัดกรองที่ครอบคลุมทุกช่วงวัย</p>
+
+    <div class="package-grid">
+      <div class="package-card">
+        <div class="package-header">
+          <h3>โปรแกรมตรวจสุขภาพพื้นฐาน</h3>
+          <div class="package-price">฿3,500</div>
+        </div>
+        <div class="package-body">
+          <ul class="package-features">
+            <li>✔ ตรวจสุขภาพทั่วไปโดยแพทย์</li>
+            <li>✔ เอกซเรย์ปอดและหัวใจ (Chest X-Ray)</li>
+            <li>✔ ตรวจความสมบูรณ์ของเม็ดเลือด (CBC)</li>
+            <li>✔ ตรวจระดับน้ำตาลและไขมันในเลือด</li>
+          </ul>
+          <button class="btn-appoint" onclick="alert('ขอบคุณที่สนใจ! กรุณาติดต่อแผนกตรวจสุขภาพ โทร 1719')">เลือกแพ็กเกจนี้</button>
+        </div>
+      </div>
+
+      <div class="package-card" style="border-color: var(--secondary);">
+        <div class="package-header" style="background: var(--secondary);">
+          <h3>โปรแกรมตรวจสุขภาพระดับพรีเมียม</h3>
+          <div class="package-price">฿12,900</div>
+        </div>
+        <div class="package-body">
+          <ul class="package-features">
+            <li>✔ รายการตรวจครบถ้วน 24 รายการ</li>
+            <li>✔ ตรวจคลื่นไฟฟ้าหัวใจ (EKG) & อัลตราซาวด์ช่องท้อง</li>
+            <li>✔ ตรวจการทำงานของตับและไตอย่างละเอียด</li>
+            <li>✔ รวมคูปองอาหารและสมุดรายงานผลตรวจ</li>
+          </ul>
+          <button class="btn-appoint" style="background: var(--secondary);" onclick="alert('ขอบคุณที่สนใจ! กรุณาติดต่อแผนกตรวจสุขภาพ โทร 1719')">เลือกแพ็กเกจนี้</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 xgod. สร้างและดูแลด้วยความใส่ใจบน GitHub Pages.</p>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Bangkok Health Medical Center</h4>
+        <p style="font-size: 0.9rem;">มุ่งมั่นสู่ความเป็นเลิศทางการแพทย์ พร้อมมาตรฐานความปลอดภัยในระดับสากล เพื่อสุขภาวะที่ดีของผู้รับบริการทุกคน</p>
+      </div>
+      <div class="footer-col">
+        <h4>บริการทางการแพทย์</h4>
+        <ul>
+          <li>ศูนย์หัวใจและหลอดเลือด</li>
+          <li>ศูนย์กระดูก ข้อ และข้อต่อ</li>
+          <li>ศูนย์สุขภาพสตรีและเด็ก</li>
+          <li>ศูนย์อุบัติเหตุและฉุกเฉิน 24 ชม.</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ติดต่อโรงพยาบาล</h4>
+        <ul>
+          <li>📍 กรุงเทพมหานคร ประเทศไทย</li>
+          <li>📞 สายด่วน: 1719 (24 ชั่วโมง)</li>
+          <li>✉️ contact@bangkokhealth.demo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Bangkok Health Medical Center. หน้าเว็บต้นแบบเพื่อการเรียนรู้และพัฒนา (Educational Template)</p>
+    </div>
   </footer>
 
+  <!-- JavaScript จำลองระบบค้นหาแพทย์แบบ Real-time Filter -->
+  <script>
+    const doctors = [
+      { name: "นพ. กิตติศักดิ์ เจริญสุข", dept: "ศูนย์หัวใจและหลอดเลือด", bio: "ผู้เชี่ยวชาญด้านสรีรวิทยาไฟฟ้าหัวใจ ประสบการณ์กว่า 15 ปี" },
+      { name: "พญ. นันทวัน วงศ์สวัสดิ์", dept: "ศูนย์สมองและระบบประสาท", bio: "แพทย์เฉพาะทางด้านโรคหลอดเลือดสมองและระบบประสาท" },
+      { name: "นพ. ธนากร ฤทธิเดช", dept: "ศูนย์กระดูกและข้อ", bio: "เชี่ยวชาญการผ่าตัดเปลี่ยนข้อเข่าและข้อสะโพกเทียมด้วยเทคโนโลยีส่องกล้อง" },
+      { name: "พญ. ภัทรพร มณีรัตน์", dept: "ศูนย์สุขภาพเด็กและทารก", bio: "กุมารแพทย์เฉพาะทางโรคภูมิแพ้และภูมิคุ้มกันในเด็ก" }
+    ];
+
+    function renderDoctors(list) {
+      const grid = document.getElementById('doctorGrid');
+      grid.innerHTML = '';
+      if (list.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">ไม่พบข้อมูลแพทย์ที่ค้นหา</p>';
+        return;
+      }
+      list.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'doctor-card';
+        card.innerHTML = `
+          <div class="doctor-avatar">🩺</div>
+          <div class="doctor-name">${doc.name}</div>
+          <div class="doctor-dept">${doc.dept}</div>
+          <div class="doctor-bio">${doc.bio}</div>
+          <button class="btn-appoint" onclick="alert('นัดหมายกับ ${doc.name} เรียบร้อยแล้ว ทีมงานจะติดต่อกลับเพื่อยืนยันเวลา')">ขอนัดหมายแพทย์</button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterDoctors() {
+      const keyword = document.getElementById('doctorSearch').value.toLowerCase().trim();
+      const filtered = doctors.filter(doc => 
+        doc.name.toLowerCase().includes(keyword) || 
+        doc.dept.toLowerCase().includes(keyword)
+      );
+      renderDoctors(filtered);
+    }
+
+    // โหลดรายชื่อแพทย์ครั้งแรกเมื่อเปิดหน้าเว็บ
+    renderDoctors(doctors);
+  </script>
 </body>
 </html>
