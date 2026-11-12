@@ -19,7 +19,7 @@
       --text-muted: #64748b;
       --border: #e2e8f0;
       --shadow: 0 4px 12px rgba(0,0,0,0.06);
-      --radius: 12px;
+      --radius: 16px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -149,7 +149,7 @@
       flex: 1;
       padding: 12px 16px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 1rem;
       outline: none;
       font-family: inherit;
@@ -200,7 +200,7 @@
       background: #f1f5f9;
       color: var(--primary);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
       font-family: inherit;
@@ -211,84 +211,93 @@
       color: #fff;
     }
 
-    /* ========================================= */
-    /* 🌟 MODAL LAYER SYSTEM (เลเยอร์กดเข้าไป) 🌟 */
-    /* ========================================= */
+    /* ======================================================== */
+    /* 🌟 MODAL LAYER: ดีไซน์ใหม่ล่าสุด (Glassmorphism & Pop) 🌟 */
+    /* ======================================================== */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(4px);
+      background-color: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);                 /* เอฟเฟกต์กระจกฝ้า */
+      -webkit-backdrop-filter: blur(8px);
       z-index: 9999;
-      display: none;             /* ซ่อนไว้เป็นค่าเริ่มต้น */
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
       animation: fadeIn 0.2s ease-out;
     }
     .modal-overlay.active {
-      display: flex;             /* เปิดแสดงผลเมื่อคลิก */
+      display: flex;
     }
 
     .modal-card {
       background: var(--surface);
       width: 100%;
-      max-width: 650px;
+      max-width: 680px;
       max-height: 90vh;
-      border-radius: 16px;
+      border-radius: 20px;
       overflow-y: auto;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
       position: relative;
-      animation: slideUp 0.3s ease-out;
+      animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .modal-close-btn {
       position: absolute;
       top: 16px;
       right: 16px;
-      background: #f1f5f9;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      font-size: 1.2rem;
-      color: var(--text-muted);
+      font-size: 1.3rem;
+      color: #ffffff;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
+      z-index: 10;
     }
-    .modal-close-btn:hover { background: #e2e8f0; color: var(--text-dark); }
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: rotate(90deg);
+    }
 
     .modal-header-hero {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #fff;
-      padding: 30px;
+      padding: 32px;
       display: flex;
       gap: 20px;
       align-items: center;
+      position: relative;
     }
     .modal-avatar-lg {
-      width: 80px;
-      height: 80px;
+      width: 84px;
+      height: 84px;
       border-radius: 50%;
       background: #fff;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      flex-shrink: 0;
     }
     .modal-body-content {
-      padding: 28px;
+      padding: 30px;
     }
-    .info-block { margin-bottom: 20px; }
+    .info-block { margin-bottom: 22px; }
     .info-block h4 {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--primary);
       margin-bottom: 8px;
       display: flex;
@@ -303,10 +312,35 @@
     }
     .schedule-table th, .schedule-table td {
       border: 1px solid var(--border);
-      padding: 8px 12px;
+      padding: 10px 14px;
       text-align: left;
     }
-    .schedule-table th { background: #f8fafc; color: var(--text-muted); }
+    .schedule-table th { background: #f8fafc; color: var(--text-muted); font-weight: 600; }
+
+    /* Interactive Appointment Booking Form */
+    .booking-box {
+      margin-top: 24px;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .booking-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .form-input:focus { border-color: var(--primary); }
 
     .btn-submit-appointment {
       width: 100%;
@@ -319,18 +353,35 @@
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
-      transition: background 0.2s;
-      margin-top: 10px;
+      transition: background 0.2s, transform 0.1s;
     }
-    .btn-submit-appointment:hover { background: var(--primary-hover); }
+    .btn-submit-appointment:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .btn-submit-appointment:active { transform: translateY(0); }
 
+    /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @keyframes modalPop {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .modal-card { max-height: 95vh; border-radius: 16px; }
+      .modal-header-hero { flex-direction: column; text-align: center; padding: 24px; }
+      .booking-form-grid { grid-template-columns: 1fr; }
     }
 
     /* Footer */
@@ -418,17 +469,17 @@
   </section>
 
   <!-- ============================================== -->
-  <!-- 🌟 โครงสร้าง MODAL LAYER (เลเยอร์ซ้อนแสดงรายละเอียด) -->
+  <!-- 🌟 โครงสร้าง MODAL LAYER (ปรับแต่งดีไซน์ใหม่) 🌟 -->
   <!-- ============================================== -->
   <div id="detailModal" class="modal-overlay" onclick="closeModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="closeModalDirect()">&times;</button>
+      <button class="modal-close-btn" onclick="closeModalDirect()" title="ปิดหน้าต่าง">&times;</button>
 
       <div class="modal-header-hero">
         <div class="modal-avatar-lg" id="mAvatar">🩺</div>
         <div>
-          <h2 id="mName" style="font-size: 1.4rem; font-weight: 700;">ชื่อแพทย์</h2>
-          <p id="mDept" style="opacity: 0.9; font-size: 0.95rem;">แผนกเฉพาะทาง</p>
+          <h2 id="mName" style="font-size: 1.45rem; font-weight: 700;">ชื่อแพทย์</h2>
+          <p id="mDept" style="opacity: 0.95; font-size: 0.95rem;">แผนกเฉพาะทาง</p>
         </div>
       </div>
 
@@ -459,9 +510,25 @@
           </table>
         </div>
 
-        <button class="btn-submit-appointment" onclick="confirmAppointment()">
-          🗓️ ขอนัดหมายแพทย์ท่านนี้ทันที
-        </button>
+        <!-- ฟอร์มนัดหมายในตัวเลเยอร์ -->
+        <div class="booking-box">
+          <h4 style="color: var(--primary); margin-bottom: 8px;">🗓️ นัดหมายคิวตรวจแพทย์ท่านนี้</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">กรอกข้อมูลเพื่อให้เจ้าหน้าที่ประสานงานและยืนยันคิวตรวจกลับ</p>
+          
+          <div class="booking-form-grid">
+            <input type="text" id="patientName" class="form-input" placeholder="ชื่อ-นามสกุล ผู้เข้ารับการตรวจ">
+            <input type="tel" id="patientTel" class="form-input" placeholder="เบอร์โทรศัพท์ติดต่อ (10 หลัก)">
+          </div>
+          
+          <div style="margin-bottom: 12px;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">เลือกวันที่ต้องการนัดตรวจ:</label>
+            <input type="date" id="patientDate" class="form-input">
+          </div>
+
+          <button class="btn-submit-appointment" onclick="confirmAppointment()">
+            ส่งคำขอนัดหมายแพทย์ทันที
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -477,7 +544,7 @@
   <!-- 🌟 JAVASCRIPT ควบคุมการทำงานของเลเยอร์ 🌟 -->
   <!-- ===================================== -->
   <script>
-    // 1. คลังข้อมูลแพทย์เชิงลึก (Database จำลอง)
+    // 1. คลังข้อมูลแพทย์เชิงลึก
     const doctors = [
       {
         id: 0,
@@ -543,7 +610,6 @@
       list.forEach(doc => {
         const card = document.createElement('div');
         card.className = 'doctor-card';
-        // เมื่อคลิกที่การ์ดจะสั่งเปิดเลเยอร์ทันที
         card.onclick = () => openDoctorDetail(doc.id);
         card.innerHTML = `
           <div class="doctor-avatar">🩺</div>
@@ -582,7 +648,6 @@
 
       // สั่งแสดงเลเยอร์
       document.getElementById('detailModal').classList.add('active');
-      // ล็อกไม่ให้หน้าเว็บหลักเลื่อนไปมาขณะเปิดเลเยอร์
       document.body.style.overflow = 'hidden';
     }
 
@@ -593,13 +658,11 @@
     }
 
     function closeModal(e) {
-      // ปิดเมื่อคลิกที่บริเวณฉากหลังสีดำรอบนอก
       if (e.target.id === 'detailModal') {
         closeModalDirect();
       }
     }
 
-    // ปิดเลเยอร์เมื่อกดปุ่ม ESC บนแป้นพิมพ์
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModalDirect();
     });
@@ -614,12 +677,25 @@
       renderDoctors(filtered);
     }
 
-    // 6. จำลองการกดยืนยันนัดหมาย
+    // 6. ส่งคำขอนัดหมายพร้อมตรวจสอบข้อมูล
     function confirmAppointment() {
-      if (currentSelectedDoctor) {
-        alert(`✅ ส่งคำขอนัดหมายกับ "${currentSelectedDoctor.name}" สำเร็จ!\nเจ้าหน้าที่จะติดต่อกลับผ่านเบอร์โทรศัพท์เพื่อยืนยันคิวตรวจ`);
-        closeModalDirect();
+      const name = document.getElementById('patientName').value.trim();
+      const tel = document.getElementById('patientTel').value.trim();
+      const date = document.getElementById('patientDate').value;
+
+      if (!name || !tel) {
+        alert('กรุณากรอกชื่อ-นามสกุล และเบอร์โทรศัพท์เพื่อให้นัดหมายสำเร็จครับ');
+        return;
       }
+
+      alert(`✅ ส่งคำขอนัดหมายสำเร็จ!\n\nแพทย์: ${currentSelectedDoctor.name}\nผู้ตรวจ: ${name}\nเบอร์โทร: ${tel}\nวันที่นัด: ${date || 'ให้เจ้าหน้าที่ติดต่อแนะนำวันว่าง'}\n\nเจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันคิวตรวจครับ`);
+      
+      // ล้างข้อมูลในฟอร์ม
+      document.getElementById('patientName').value = '';
+      document.getElementById('patientTel').value = '';
+      document.getElementById('patientDate').value = '';
+      
+      closeModalDirect();
     }
 
     // สั่งวาดการ์ดตอนโหลดหน้าเว็บ
