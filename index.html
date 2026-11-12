@@ -9,10 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #005a9c;       /* น้ำเงินเข้มทางการแพทย์ */
+      --primary: #005a9c;       /* น้ำเงินเข้มสากลทางการแพทย์ */
       --primary-hover: #004070;
-      --secondary: #00a896;     /* ฟ้าอมเขียวสดชื่น/สุขภาพ */
-      --accent-red: #e63946;     /* แดงสำหรับสายด่วนฉุกเฉิน */
+      --secondary: #00a896;     /* ฟ้าอมเขียวสดชื่นสุขภาพ */
+      --accent-red: #e63946;     /* แดงสายด่วนฉุกเฉิน */
       --bg-light: #f8fafc;
       --surface: #ffffff;
       --text-dark: #1e293b;
@@ -40,11 +40,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    .emergency-hotline {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .emergency-hotline { display: flex; align-items: center; gap: 8px; }
     .hotline-badge {
       background-color: var(--accent-red);
       color: #fff;
@@ -78,11 +74,7 @@
       align-items: center;
       gap: 8px;
     }
-    .nav-menu {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-    }
+    .nav-menu { display: flex; gap: 20px; list-style: none; }
     .nav-menu a {
       text-decoration: none;
       color: var(--text-dark);
@@ -101,7 +93,7 @@
     .hero h1 { font-size: 2.5rem; margin-bottom: 16px; font-weight: 700; }
     .hero p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 24px auto; opacity: 0.95; }
 
-    /* Quick Action Cards (วางทับกึ่งกลางระหว่าง Hero กับ Content) */
+    /* Quick Action Cards */
     .quick-actions-container {
       max-width: 1100px;
       margin: -50px auto 40px auto;
@@ -180,6 +172,12 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .doctor-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
     }
     .doctor-avatar {
       width: 90px;
@@ -195,19 +193,23 @@
     .doctor-name { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
     .doctor-dept { color: var(--secondary); font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
     .doctor-bio { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
-    .btn-appoint {
+    
+    .btn-view-profile {
       width: 100%;
       padding: 10px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
+      background: #f1f5f9;
+      color: var(--primary);
+      border: 1px solid var(--border);
       border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       font-family: inherit;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
-    .btn-appoint:hover { background: var(--primary-hover); }
+    .btn-view-profile:hover {
+      background: var(--primary);
+      color: #fff;
+    }
 
     /* Packages Section */
     .package-grid {
@@ -233,6 +235,128 @@
     .package-features { list-style: none; margin-bottom: 20px; font-size: 0.9rem; }
     .package-features li { padding: 8px 0; border-bottom: 1px dashed var(--border); display: flex; align-items: center; gap: 8px; }
 
+    /* ========================================= */
+    /* 🌟 MODAL LAYER SYSTEM (เลเยอร์กดเข้าไป) 🌟 */
+    /* ========================================= */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;             /* ซ่อนไว้เป็นค่าเริ่มต้น */
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.2s ease-out;
+    }
+    .modal-overlay.active {
+      display: flex;             /* เปิดแสดงผลเมื่อคลิก */
+    }
+
+    .modal-card {
+      background: var(--surface);
+      width: 100%;
+      max-width: 650px;
+      max-height: 90vh;
+      border-radius: 16px;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      position: relative;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #f1f5f9;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover { background: #e2e8f0; color: var(--text-dark); }
+
+    .modal-header-hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 30px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .modal-avatar-lg {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #fff;
+      font-size: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .modal-body-content {
+      padding: 28px;
+    }
+    .info-block { margin-bottom: 20px; }
+    .info-block h4 {
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+    .schedule-table th, .schedule-table td {
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    .schedule-table th { background: #f8fafc; color: var(--text-muted); }
+
+    .btn-submit-appointment {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+      margin-top: 10px;
+    }
+    .btn-submit-appointment:hover { background: var(--primary-hover); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
     /* Footer */
     footer {
       background-color: #0f172a;
@@ -240,17 +364,6 @@
       padding: 50px 24px 20px 24px;
       margin-top: 60px;
     }
-    .footer-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 32px;
-      margin-bottom: 40px;
-    }
-    .footer-col h4 { color: #fff; margin-bottom: 16px; }
-    .footer-col ul { list-style: none; font-size: 0.9rem; }
-    .footer-col ul li { margin-bottom: 8px; }
     .footer-bottom {
       text-align: center;
       padding-top: 20px;
@@ -267,21 +380,16 @@
       <span class="hotline-badge">EMERGENCY</span>
       <span>ศูนย์อุบัติเหตุและฉุกเฉินตลอด 24 ชั่วโมง: โทร <strong>1719</strong></span>
     </div>
-    <div>
-      <span>🌐 ภาษาไทย | English</span>
-    </div>
+    <div><span>🌐 ภาษาไทย | English</span></div>
   </div>
 
   <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#" class="brand">
-        <span>🏥</span> Bangkok Health Hospital
-      </a>
+      <a href="#" class="brand"><span>🏥</span> Bangkok Health Hospital</a>
       <ul class="nav-menu">
         <li><a href="#doctors">ค้นหาแพทย์</a></li>
         <li><a href="#packages">แพ็กเกจสุขภาพ</a></li>
-        <li><a href="#centers">ศูนย์เฉพาะทาง</a></li>
         <li><a href="#contact">ติดต่อเรา</a></li>
       </ul>
     </div>
@@ -290,7 +398,7 @@
   <!-- Hero Header -->
   <header class="hero">
     <h1>มาตรฐานการแพทย์สากล เพื่อคุณภาพชีวิตที่ดีของคุณ</h1>
-    <p>พร้อมให้บริการการรักษาและการตรวจวินิจฉัยอย่างแม่นยำด้วยทีมแพทย์เฉพาะทางและเทคโนโลยีทันสมัย</p>
+    <p>คลิกที่รายชื่อแพทย์หรือแพ็กเกจ เพื่อเปิดดูรายละเอียดเชิงลึกและทำการนัดหมายได้ทันที</p>
   </header>
 
   <!-- Quick Action Cards -->
@@ -299,119 +407,156 @@
       <a href="#doctors" class="quick-card">
         <div class="quick-icon">👨‍⚕️</div>
         <h3>ค้นหาแพทย์</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">เลือกดูตารางออกตรวจ</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">ดูประวัติ & ตารางตรวจ</p>
       </a>
       <a href="#packages" class="quick-card">
         <div class="quick-icon">📋</div>
         <h3>แพ็กเกจสุขภาพ</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">โปรแกรมตรวจสุขภาพประจำปี</p>
       </a>
-      <a href="#appointment" class="quick-card">
+      <a href="javascript:void(0)" class="quick-card" onclick="openDoctorDetail(0)">
         <div class="quick-icon">📅</div>
-        <h3>ทำนัดหมาย</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">นัดล่วงหน้าสะดวกรวดเร็ว</p>
+        <h3>ทำนัดหมายด่วน</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">เปิดเลเยอร์นัดหมาย</p>
       </a>
-      <a href="#" class="quick-card" onclick="alert('ระบบสายด่วนฉุกเฉิน: 1719 ให้บริการตลอด 24 ชั่วโมง'); return false;">
+      <a href="tel:1719" class="quick-card">
         <div class="quick-icon">🚑</div>
-        <h3>บริการฉุกเฉิน 24 ชม.</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">รถพยาบาลเคลื่อนที่เร็ว</p>
+        <h3>สายด่วน 1719</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">ฉุกเฉินตลอด 24 ชม.</p>
       </a>
     </div>
   </div>
 
   <!-- Doctor Search Section -->
   <section id="doctors" class="container">
-    <h2 class="section-title">ค้นหาแพทย์ผู้เชี่ยวชาญ</h2>
-    <p class="section-subtitle">เลือกค้นหาตามชื่อแพทย์ แผนกการรักษา หรือความเชี่ยวชาญเฉพาะทาง</p>
+    <h2 class="section-title">แพทย์เฉพาะทาง</h2>
+    <p class="section-subtitle">คลิกที่การ์ดแพทย์ท่านใดก็ได้ เพื่อเปิด "เลเยอร์ประวัติและตารางออกตรวจ"</p>
 
     <div class="search-box-wrap">
-      <input type="text" id="doctorSearch" class="search-input" placeholder="พิมพ์ชื่อแพทย์ หรือแผนก (เช่น หัวใจ, กระดูก, เด็ก)..." oninput="filterDoctors()">
+      <input type="text" id="doctorSearch" class="search-input" placeholder="พิมพ์ชื่อแพทย์ หรือแผนก (เช่น หัวใจ, กระดูก, สมอง, เด็ก)..." oninput="filterDoctors()">
     </div>
 
     <div class="doctor-grid" id="doctorGrid">
-      <!-- ข้อมูลแพทย์จะถูกแสดงผ่าน JavaScript -->
+      <!-- แสดงผลการ์ดแพทย์ผ่าน JavaScript -->
     </div>
   </section>
 
-  <!-- Health Packages Section -->
-  <section id="packages" class="container" style="border-top: 1px solid var(--border); padding-top: 60px;">
-    <h2 class="section-title">แพ็กเกจและโปรแกรมตรวจสุขภาพ</h2>
-    <p class="section-subtitle">ดูแลสุขภาพเชิงป้องกันด้วยแพ็กเกจตรวจคัดกรองที่ครอบคลุมทุกช่วงวัย</p>
-
-    <div class="package-grid">
-      <div class="package-card">
-        <div class="package-header">
-          <h3>โปรแกรมตรวจสุขภาพพื้นฐาน</h3>
-          <div class="package-price">฿3,500</div>
-        </div>
-        <div class="package-body">
-          <ul class="package-features">
-            <li>✔ ตรวจสุขภาพทั่วไปโดยแพทย์</li>
-            <li>✔ เอกซเรย์ปอดและหัวใจ (Chest X-Ray)</li>
-            <li>✔ ตรวจความสมบูรณ์ของเม็ดเลือด (CBC)</li>
-            <li>✔ ตรวจระดับน้ำตาลและไขมันในเลือด</li>
-          </ul>
-          <button class="btn-appoint" onclick="alert('ขอบคุณที่สนใจ! กรุณาติดต่อแผนกตรวจสุขภาพ โทร 1719')">เลือกแพ็กเกจนี้</button>
+  <!-- ============================================== -->
+  <!-- 🌟 โครงสร้าง MODAL LAYER (เลเยอร์ซ้อนแสดงรายละเอียด) -->
+  <!-- ============================================== -->
+  <div id="detailModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeModalDirect()">&times;</button>
+      
+      <div class="modal-header-hero">
+        <div class="modal-avatar-lg" id="mAvatar">🩺</div>
+        <div>
+          <h2 id="mName" style="font-size: 1.4rem; font-weight: 700;">ชื่อแพทย์</h2>
+          <p id="mDept" style="opacity: 0.9; font-size: 0.95rem;">แผนกเฉพาะทาง</p>
         </div>
       </div>
 
-      <div class="package-card" style="border-color: var(--secondary);">
-        <div class="package-header" style="background: var(--secondary);">
-          <h3>โปรแกรมตรวจสุขภาพระดับพรีเมียม</h3>
-          <div class="package-price">฿12,900</div>
+      <div class="modal-body-content">
+        <div class="info-block">
+          <h4>🎓 ประวัติการศึกษาและความชำนาญ</h4>
+          <p id="mEducation" style="color: var(--text-muted); font-size: 0.9rem;">-</p>
         </div>
-        <div class="package-body">
-          <ul class="package-features">
-            <li>✔ รายการตรวจครบถ้วน 24 รายการ</li>
-            <li>✔ ตรวจคลื่นไฟฟ้าหัวใจ (EKG) & อัลตราซาวด์ช่องท้อง</li>
-            <li>✔ ตรวจการทำงานของตับและไตอย่างละเอียด</li>
-            <li>✔ รวมคูปองอาหารและสมุดรายงานผลตรวจ</li>
-          </ul>
-          <button class="btn-appoint" style="background: var(--secondary);" onclick="alert('ขอบคุณที่สนใจ! กรุณาติดต่อแผนกตรวจสุขภาพ โทร 1719')">เลือกแพ็กเกจนี้</button>
+
+        <div class="info-block">
+          <h4>🏥 ศูนย์การรักษา / แผนก</h4>
+          <p id="mClinic" style="color: var(--text-muted); font-size: 0.9rem;">-</p>
         </div>
+
+        <div class="info-block">
+          <h4>📅 ตารางออกตรวจประจำสัปดาห์</h4>
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>วันตรวจ</th>
+                <th>ช่วงเวลา</th>
+                <th>สถานที่</th>
+              </tr>
+            </thead>
+            <tbody id="mScheduleBody">
+              <!-- ข้อมูลตารางตรวจจะถูกเติมที่นี่ -->
+            </tbody>
+          </table>
+        </div>
+
+        <button class="btn-submit-appointment" onclick="confirmAppointment()">
+          🗓️ ขอนัดหมายแพทย์ท่านนี้ทันที
+        </button>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Bangkok Health Medical Center</h4>
-        <p style="font-size: 0.9rem;">มุ่งมั่นสู่ความเป็นเลิศทางการแพทย์ พร้อมมาตรฐานความปลอดภัยในระดับสากล เพื่อสุขภาวะที่ดีของผู้รับบริการทุกคน</p>
-      </div>
-      <div class="footer-col">
-        <h4>บริการทางการแพทย์</h4>
-        <ul>
-          <li>ศูนย์หัวใจและหลอดเลือด</li>
-          <li>ศูนย์กระดูก ข้อ และข้อต่อ</li>
-          <li>ศูนย์สุขภาพสตรีและเด็ก</li>
-          <li>ศูนย์อุบัติเหตุและฉุกเฉิน 24 ชม.</li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>ติดต่อโรงพยาบาล</h4>
-        <ul>
-          <li>📍 กรุงเทพมหานคร ประเทศไทย</li>
-          <li>📞 สายด่วน: 1719 (24 ชั่วโมง)</li>
-          <li>✉️ contact@bangkokhealth.demo</li>
-        </ul>
-      </div>
-    </div>
     <div class="footer-bottom">
-      <p>© 2025 Bangkok Health Medical Center. หน้าเว็บต้นแบบเพื่อการเรียนรู้และพัฒนา (Educational Template)</p>
+      <p>© 2025 Bangkok Health Medical Center. ระบบเว็บไซต์ต้นแบบพร้อมเลเยอร์เจาะลึกข้อมูล</p>
     </div>
   </footer>
 
-  <!-- JavaScript จำลองระบบค้นหาแพทย์แบบ Real-time Filter -->
+  <!-- ===================================== -->
+  <!-- 🌟 JAVASCRIPT ควบคุมการทำงานของเลเยอร์ 🌟 -->
+  <!-- ===================================== -->
   <script>
+    // 1. คลังข้อมูลแพทย์เชิงลึก (Database จำลอง)
     const doctors = [
-      { name: "นพ. กิตติศักดิ์ เจริญสุข", dept: "ศูนย์หัวใจและหลอดเลือด", bio: "ผู้เชี่ยวชาญด้านสรีรวิทยาไฟฟ้าหัวใจ ประสบการณ์กว่า 15 ปี" },
-      { name: "พญ. นันทวัน วงศ์สวัสดิ์", dept: "ศูนย์สมองและระบบประสาท", bio: "แพทย์เฉพาะทางด้านโรคหลอดเลือดสมองและระบบประสาท" },
-      { name: "นพ. ธนากร ฤทธิเดช", dept: "ศูนย์กระดูกและข้อ", bio: "เชี่ยวชาญการผ่าตัดเปลี่ยนข้อเข่าและข้อสะโพกเทียมด้วยเทคโนโลยีส่องกล้อง" },
-      { name: "พญ. ภัทรพร มณีรัตน์", dept: "ศูนย์สุขภาพเด็กและทารก", bio: "กุมารแพทย์เฉพาะทางโรคภูมิแพ้และภูมิคุ้มกันในเด็ก" }
+      {
+        id: 0,
+        name: "นพ. กิตติศักดิ์ เจริญสุข",
+        dept: "ศูนย์หัวใจและหลอดเลือด",
+        bio: "ผู้เชี่ยวชาญด้านสรีรวิทยาไฟฟ้าหัวใจ ประสบการณ์กว่า 15 ปี",
+        education: "แพทยศาสตรบัณฑิต (เกียรตินิยมอันดับ 1) จุฬาลงกรณ์มหาวิทยาลัย, วุฒิบัตรอายุรศาสตร์โรคหัวใจ รพ.ศิริราช, Fellowship in Cardiac Electrophysiology (สหรัฐอเมริกา)",
+        clinic: "ศูนย์หัวใจ อาคาร A ชั้น 2",
+        schedule: [
+          { day: "จันทร์ - อังคาร", time: "09:00 - 16:00 น.", room: "ห้องตรวจหัวใจ 204" },
+          { day: "พฤหัสบดี", time: "13:00 - 18:00 น.", room: "ห้องตรวจหัวใจ 204" },
+          { day: "เสาร์", time: "09:00 - 12:00 น.", room: "คลินิกพิเศษนอกเวลา" }
+        ]
+      },
+      {
+        id: 1,
+        name: "พญ. นันทวัน วงศ์สวัสดิ์",
+        dept: "ศูนย์สมองและระบบประสาท",
+        bio: "แพทย์เฉพาะทางด้านโรคหลอดเลือดสมองและระบบประสาท",
+        education: "แพทยศาสตรบัณฑิต มหาวิทยาลัยมหิดล, วุฒิบัตรประสาทวิทยา สถาบันประสาทวิทยา, Certificate in Stroke Management",
+        clinic: "ศูนย์สมองและระบบประสาท อาคาร B ชั้น 3",
+        schedule: [
+          { day: "อังคาร - พุธ", time: "10:00 - 16:00 น.", room: "ห้องตรวจสมอง 302" },
+          { day: "ศุกร์", time: "09:00 - 15:00 น.", room: "ห้องตรวจสมอง 302" }
+        ]
+      },
+      {
+        id: 2,
+        name: "นพ. ธนากร ฤทธิเดช",
+        dept: "ศูนย์กระดูกและข้อ",
+        bio: "เชี่ยวชาญการผ่าตัดเปลี่ยนข้อเข่าและข้อสะโพกเทียมด้วยเทคโนโลยีส่องกล้อง",
+        education: "แพทยศาสตรบัณฑิต มหาวิทยาลัยเชียงใหม่, วุฒิบัตรศัลยศาสตร์ออร์โธปิดิกส์, Fellowship in Joint Reconstruction (เยอรมนี)",
+        clinic: "ศูนย์กระดูกและข้อ อาคาร A ชั้น 1",
+        schedule: [
+          { day: "จันทร์ - พุธ - ศุกร์", time: "08:30 - 15:00 น.", room: "ห้องตรวจกระดูก 105" },
+          { day: "อาทิตย์", time: "09:00 - 12:00 น.", room: "คลินิกนอกเวลา" }
+        ]
+      },
+      {
+        id: 3,
+        name: "พญ. ภัทรพร มณีรัตน์",
+        dept: "ศูนย์สุขภาพเด็กและทารก",
+        bio: "กุมารแพทย์เฉพาะทางโรคภูมิแพ้และภูมิคุ้มกันในเด็ก",
+        education: "แพทยศาสตรบัณฑิต มหาวิทยาลัยขอนแก่น, วุฒิบัตรกุมารเวชศาสตร์, อนุสาขากุมารเวชศาสตร์โรคภูมิแพ้และภูมิคุ้มกัน",
+        clinic: "ศูนย์กุมารเวช 24 ชั่วโมง อาคารเด็ก ชั้น 1",
+        schedule: [
+          { day: "ทุกวันจันทร์ - พฤหัสบดี", time: "08:00 - 14:00 น.", room: "ห้องตรวจเด็ก 101" },
+          { day: "เสาร์ - อาทิตย์", time: "09:00 - 16:00 น.", room: "ห้องตรวจเด็ก 102" }
+        ]
+      }
     ];
 
+    let currentSelectedDoctor = null;
+
+    // 2. ฟังก์ชันวาดการ์ดแพทย์หน้าแรก
     function renderDoctors(list) {
       const grid = document.getElementById('doctorGrid');
       grid.innerHTML = '';
@@ -422,17 +567,68 @@
       list.forEach(doc => {
         const card = document.createElement('div');
         card.className = 'doctor-card';
+        // เมื่อคลิกที่การ์ดจะสั่งเปิดเลเยอร์ทันที
+        card.onclick = () => openDoctorDetail(doc.id);
         card.innerHTML = `
           <div class="doctor-avatar">🩺</div>
           <div class="doctor-name">${doc.name}</div>
           <div class="doctor-dept">${doc.dept}</div>
           <div class="doctor-bio">${doc.bio}</div>
-          <button class="btn-appoint" onclick="alert('นัดหมายกับ ${doc.name} เรียบร้อยแล้ว ทีมงานจะติดต่อกลับเพื่อยืนยันเวลา')">ขอนัดหมายแพทย์</button>
+          <button class="btn-view-profile" onclick="event.stopPropagation(); openDoctorDetail(${doc.id})">🔍 ดูประวัติ & ตารางตรวจ</button>
         `;
         grid.appendChild(card);
       });
     }
 
+    // 3. ฟังก์ชันเปิดเลเยอร์ซ้อน (Open Modal Layer)
+    function openDoctorDetail(doctorId) {
+      const doc = doctors.find(d => d.id === doctorId) || doctors[0];
+      currentSelectedDoctor = doc;
+
+      // เติมข้อมูลลงในเลเยอร์
+      document.getElementById('mName').textContent = doc.name;
+      document.getElementById('mDept').textContent = doc.dept;
+      document.getElementById('mEducation').textContent = doc.education;
+      document.getElementById('mClinic').textContent = doc.clinic;
+
+      // เติมตารางตรวจ
+      const tbody = document.getElementById('mScheduleBody');
+      tbody.innerHTML = '';
+      doc.schedule.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight: 600;">${item.day}</td>
+          <td>${item.time}</td>
+          <td style="color: var(--text-muted);">${item.room}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // สั่งแสดงเลเยอร์
+      document.getElementById('detailModal').classList.add('active');
+      // ล็อกไม่ให้หน้าเว็บหลักเลื่อนไปมาขณะเปิดเลเยอร์
+      document.body.style.overflow = 'hidden';
+    }
+
+    // 4. ฟังก์ชันปิดเลเยอร์ (Close Modal Layer)
+    function closeModalDirect() {
+      document.getElementById('detailModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function closeModal(e) {
+      // ปิดเมื่อคลิกที่บริเวณฉากหลังสีดำรอบนอก
+      if (e.target.id === 'detailModal') {
+        closeModalDirect();
+      }
+    }
+
+    // ปิดเลเยอร์เมื่อกดปุ่ม ESC บนแป้นพิมพ์
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModalDirect();
+    });
+
+    // 5. ระบบค้นหา Real-time
     function filterDoctors() {
       const keyword = document.getElementById('doctorSearch').value.toLowerCase().trim();
       const filtered = doctors.filter(doc => 
@@ -442,7 +638,15 @@
       renderDoctors(filtered);
     }
 
-    // โหลดรายชื่อแพทย์ครั้งแรกเมื่อเปิดหน้าเว็บ
+    // 6. จำลองการกดยืนยันนัดหมาย
+    function confirmAppointment() {
+      if (currentSelectedDoctor) {
+        alert(`✅ ส่งคำขอนัดหมายกับ "${currentSelectedDoctor.name}" สำเร็จ!\nเจ้าหน้าที่จะติดต่อกลับผ่านเบอร์โทรศัพท์เพื่อยืนยันคิวตรวจ`);
+        closeModalDirect();
+      }
+    }
+
+    // สั่งวาดการ์ดตอนโหลดหน้าเว็บ
     renderDoctors(doctors);
   </script>
 </body>
