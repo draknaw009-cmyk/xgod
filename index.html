@@ -1,87 +1,340 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-  <title>X Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ยินดีต้อนรับสู่เว็บไซต์ของฉัน | Portfolio</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* ------------------------------
+       1. ตัวแปรสีและค่าพื้นฐาน
+       ------------------------------ */
+    :root {
+      --bg-color: #0f172a;       /* สีพื้นหลังเข้ม */
+      --card-bg: #1e293b;        /* สีพื้นหลังการ์ด */
+      --border-color: #334155;   /* สีกรอบ/เส้นคั่น */
+      --primary: #38bdf8;        /* สีหลัก (Accent ฟ้าสว่าง) */
+      --primary-hover: #0ea5e9;  /* สีเมื่อเมาส์ชี้ */
+      --text-main: #f8fafc;      /* สีข้อความหลัก */
+      --text-muted: #94a3b8;     /* สีข้อความรอง */
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background: #0f172a;
-      color: white;
-      text-align: center;
+      padding: 0;
     }
 
-    header {
-      padding: 80px 20px;
+    html {
+      scroll-behavior: smooth;
     }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
     }
 
-    .subtitle {
-      color: #94a3b8;
-    }
-
-    .section {
-      padding: 60px 20px;
-    }
-
-    .card-container {
+    /* ------------------------------
+       2. แถบเมนูด้านบน (Navigation)
+       ------------------------------ */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
       gap: 20px;
-      flex-wrap: wrap;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ------------------------------
+       3. เลย์เอาต์และระยะห่าง (Layout)
+       ------------------------------ */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ------------------------------
+       4. ส่วนต้อนรับ (Hero Section)
+       ------------------------------ */
+    .hero {
+      text-align: center;
+      padding: 80px 0 60px 0;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 28px auto;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #0f172a;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ------------------------------
+       5. การ์ดแสดงผลงาน (Projects Grid)
+       ------------------------------ */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
     .card {
-      background: #1e293b;
-      padding: 20px;
-      width: 250px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
       border-radius: 12px;
-      transition: 0.3s;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
     }
 
     .card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .card-tag {
+      display: inline-block;
+      background-color: #334155;
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+
+    /* ------------------------------
+       6. ป้ายทักษะ (Skill Badges)
+       ------------------------------ */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-pill {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    /* ------------------------------
+       7. ส่วนติดต่อและท้ายหน้า (Footer)
+       ------------------------------ */
+    .contact-box {
+      text-align: center;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px 20px;
+    }
+
+    .contact-box p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
     }
 
     footer {
-      padding: 30px;
-      color: #94a3b8;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>สวัสดี ผมชื่อ X</h1>
-  <p class="subtitle">Web Developer | Designer | Creator</p>
-</header>
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="nav-brand">xgod.space</a>
+    <ul class="nav-links">
+      <li><a href="#about">เกี่ยวกับฉัน</a></li>
+      <li><a href="#projects">ผลงาน</a></li>
+      <li><a href="#skills">ทักษะ</a></li>
+      <li><a href="#contact">ติดต่อ</a></li>
+    </ul>
+  </nav>
 
-<section class="section">
-  <h2>About Me</h2>
-  <p>ผมเป็นนักพัฒนาเว็บที่สนใจการออกแบบและเทคโนโลยีใหม่ๆ</p>
-</section>
+  <div class="container">
 
-<section class="section">
-  <h2>Projects</h2>
-  <div class="card-container">
-    <div class="card">
-      <h3>Project 1</h3>
-      <p>รายละเอียดโปรเจค</p>
-    </div>
-    <div class="card">
-      <h3>Project 2</h3>
-      <p>รายละเอียดโปรเจค</p>
-    </div>
+    <!-- Hero Section -->
+    <header class="hero">
+      <span class="hero-badge">🚀 ยินดีต้อนรับสู่เว็บไซต์ของฉัน</span>
+      <h1>สวัสดี! ฉันคือผู้พัฒนาเว็บไซต์</h1>
+      <p>พื้นที่รวบรวมโปรเจกต์ ผลงานสร้างสรรค์ และเรื่องราวที่น่าสนใจ พัฒนาและโฮสต์บนระบบ GitHub Pages 100%</p>
+      <a href="#projects" class="btn">ดูผลงานทั้งหมด</a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2 class="section-title">👤 เกี่ยวกับฉัน</h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
+        ยินดีต้อนรับทุกคนเข้าสู่เว็บไซต์ส่วนตัวของฉัน เว็บไซต์นี้สร้างขึ้นเพื่อฝึกฝนและพัฒนาทักษะด้าน Web Development 
+        โดยการนำเทคโนโลยี HTML, CSS และ JavaScript มาประยุกต์ใช้งานจริงร่วมกับแพลตฟอร์ม GitHub
+      </p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2 class="section-title">📂 โปรเจกต์ที่น่าสนใจ</h2>
+      <div class="grid">
+
+        <div class="card">
+          <h3>โปรเจกต์ที่ 1: GitHub Web</h3>
+          <p>สร้างและเผยแพร่หน้าเว็บไซต์ขึ้นสู่ระบบออนไลน์ด้วยบริการ GitHub Pages</p>
+          <div>
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">GitHub</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>โปรเจกต์ที่ 2: ระบบจัดการข้อมูล</h3>
+          <p>เรียนรู้การเชื่อมต่อระบบหลังบ้าน และการจัดเก็บข้อมูลผ่านเทคโนโลยี Cloud</p>
+          <div>
+            <span class="card-tag">Backend</span>
+            <span class="card-tag">API</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>โปรเจกต์ที่ 3: แอปพลิเคชันอัจฉริยะ</h3>
+          <p>การพัฒนาเครื่องมืออำนวยความสะดวกด้วยเทคโนโลยีสมัยใหม่และการเขียนโปรแกรม</p>
+          <div>
+            <span class="card-tag">Automation</span>
+            <span class="card-tag">Tools</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2 class="section-title">⚡ ทักษะและความสนใจ</h2>
+      <div class="skills-container">
+        <div class="skill-pill">🌐 HTML5 / CSS3</div>
+        <div class="skill-pill">💻 JavaScript</div>
+        <div class="skill-pill">🐙 Git & GitHub</div>
+        <div class="skill-pill">☁️ Cloud & Web Hosting</div>
+        <div class="skill-pill">📱 Responsive Design</div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">📬 ติดต่อพูดคุย</h2>
+      <div class="contact-box">
+        <h3 style="margin-bottom: 10px;">สนใจร่วมงานหรือปรึกษาข้อมูล?</h3>
+        <p>สามารถส่งอีเมลหรือข้อความมาพูดคุยแลกเปลี่ยนไอเดียได้เสมอ</p>
+        <a href="mailto:your-email@example.com" class="btn">ส่งข้อความหาฉัน</a>
+      </div>
+    </section>
+
   </div>
-</section>
 
-<footer>
-  © 2026 X Portfolio
-</footer>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 xgod. สร้างและดูแลด้วยความใส่ใจบน GitHub Pages.</p>
+  </footer>
 
 </body>
 </html>
