@@ -3,36 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bangkok Health Medical Center | ศูนย์การแพทย์เฉพาะทาง</title>
+  <title>Bangkok Health Medical Center | ศูนย์บริการทางการแพทย์ครบวงจร</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #005a9c;       /* น้ำเงินเข้มสากลทางการแพทย์ */
-      --primary-hover: #004070;
-      --secondary: #00a896;     /* ฟ้าอมเขียวสดชื่นสุขภาพ */
-      --accent-red: #e63946;     /* แดงสายด่วนฉุกเฉิน */
-      --bg-light: #f8fafc;
+      --primary: #005a9c;
+      --secondary: #00a896;
+      --accent-package: #059669;
+      --accent-center: #d97706;
+      --bg: #f8fafc;
       --surface: #ffffff;
-      --text-dark: #1e293b;
-      --text-muted: #64748b;
+      --text: #1e293b;
+      --muted: #64748b;
       --border: #e2e8f0;
-      --shadow: 0 4px 12px rgba(0,0,0,0.06);
       --radius: 16px;
+      --shadow: 0 4px 14px rgba(0,0,0,0.06);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Sarabun', sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-dark);
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    /* Top Emergency Bar */
+    /* Top Emergency Header */
     .top-bar {
-      background-color: #0f172a;
+      background: #0f172a;
       color: #ffffff;
       padding: 8px 24px;
       font-size: 0.85rem;
@@ -40,18 +40,18 @@
       justify-content: space-between;
       align-items: center;
     }
-    .emergency-hotline { display: flex; align-items: center; gap: 8px; }
-    .hotline-badge {
-      background-color: var(--accent-red);
+    .hotline-tag {
+      background: #e63946;
       color: #fff;
       font-weight: 700;
       padding: 2px 8px;
       border-radius: 4px;
+      margin-right: 8px;
     }
 
     /* Navbar */
-    .navbar {
-      background-color: var(--surface);
+    nav {
+      background: var(--surface);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
@@ -66,7 +66,7 @@
       align-items: center;
     }
     .brand {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--primary);
       text-decoration: none;
@@ -74,165 +74,157 @@
       align-items: center;
       gap: 8px;
     }
-    .nav-menu { display: flex; gap: 20px; list-style: none; }
-    .nav-menu a {
+    .menu { display: flex; gap: 24px; list-style: none; }
+    .menu a {
       text-decoration: none;
-      color: var(--text-dark);
+      color: var(--text);
       font-weight: 500;
       transition: color 0.2s;
     }
-    .nav-menu a:hover { color: var(--primary); }
+    .menu a:hover { color: var(--primary); }
 
-    /* Hero Section */
+    /* Hero */
     .hero {
-      background: linear-gradient(135deg, rgba(0, 90, 156, 0.95), rgba(0, 168, 150, 0.85)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80') center/cover;
-      color: #ffffff;
-      padding: 80px 24px 100px 24px;
+      background: linear-gradient(135deg, rgba(0, 90, 156, 0.93), rgba(0, 168, 150, 0.85)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: #fff;
+      padding: 70px 24px 90px 24px;
       text-align: center;
     }
-    .hero h1 { font-size: 2.5rem; margin-bottom: 16px; font-weight: 700; }
-    .hero p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 24px auto; opacity: 0.95; }
+    .hero h1 { font-size: 2.3rem; margin-bottom: 12px; }
+    .hero p { font-size: 1.1rem; max-width: 650px; margin: 0 auto; opacity: 0.95; }
 
-    /* Quick Action Cards */
-    .quick-actions-container {
-      max-width: 1100px;
-      margin: -50px auto 40px auto;
+    /* Filter Tabs */
+    .filter-wrap {
+      max-width: 1200px;
+      margin: -24px auto 30px auto;
       padding: 0 20px;
-    }
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-    .quick-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      text-align: center;
-      border-top: 4px solid var(--secondary);
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--text-dark);
-    }
-    .quick-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-    .quick-icon { font-size: 2rem; margin-bottom: 8px; }
-    .quick-card h3 { font-size: 1.1rem; color: var(--primary); }
-
-    /* Main Container */
-    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-    .section-title {
-      text-align: center;
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    .section-subtitle {
-      text-align: center;
-      color: var(--text-muted);
-      margin-bottom: 40px;
-    }
-
-    /* Doctor Finder Filter */
-    .search-box-wrap {
-      max-width: 600px;
-      margin: 0 auto 30px auto;
       display: flex;
-      gap: 10px;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-    .search-input {
-      flex: 1;
-      padding: 12px 16px;
+    .filter-btn {
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 1rem;
-      outline: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
       font-family: inherit;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .search-input:focus { border-color: var(--primary); }
+    .filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
 
-    /* Doctor Grid */
-    .doctor-grid {
+    /* Container & Standard Grid */
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .items-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
     }
-    .doctor-card {
+
+    /* Standard Card Pattern (ทุกประเภทใช้โครงสร้างนี้เหมือนกันหมด) */
+    .unified-card {
       background: var(--surface);
       border-radius: var(--radius);
-      padding: 24px;
       border: 1px solid var(--border);
+      padding: 24px;
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
       cursor: pointer;
-      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
     }
-    .doctor-card:hover {
+    .unified-card:hover {
       transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
       border-color: var(--primary);
     }
-    .doctor-avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: #e2e8f0;
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .card-icon-badge {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
-      margin-bottom: 16px;
+      font-size: 1.8rem;
+      background: #f1f5f9;
+      flex-shrink: 0;
     }
-    .doctor-name { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
-    .doctor-dept { color: var(--secondary); font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
-    .doctor-bio { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
-
-    .btn-view-profile {
+    .badge-pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+    .card-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    .btn-action-view {
       width: 100%;
       padding: 10px;
-      background: #f1f5f9;
-      color: var(--primary);
       border: 1px solid var(--border);
+      background: #f8fafc;
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
       font-family: inherit;
+      color: var(--primary);
       transition: all 0.2s;
     }
-    .btn-view-profile:hover {
+    .unified-card:hover .btn-action-view {
       background: var(--primary);
       color: #fff;
     }
 
-    /* ======================================================== */
-    /* 🌟 MODAL LAYER: ดีไซน์ใหม่ล่าสุด (Glassmorphism & Pop) 🌟 */
-    /* ======================================================== */
+    /* ============================================================ */
+    /* 🌟 UNIVERSAL MODAL LAYER (รูปแบบเดียว รองรับทุกข้อมูล 100%) 🌟 */
+    /* ============================================================ */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(8px);                 /* เอฟเฟกต์กระจกฝ้า */
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       z-index: 9999;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      animation: fadeIn 0.2s ease-out;
     }
-    .modal-overlay.active {
-      display: flex;
-    }
+    .modal-overlay.active { display: flex; }
 
     .modal-card {
       background: var(--surface);
@@ -241,10 +233,13 @@
       max-height: 90vh;
       border-radius: 20px;
       overflow-y: auto;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35);
       position: relative;
-      animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .modal-close-btn {
@@ -252,7 +247,6 @@
       top: 16px;
       right: 16px;
       background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(4px);
       border: none;
       width: 38px;
       height: 38px;
@@ -263,7 +257,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      transition: transform 0.2s, background 0.2s;
       z-index: 10;
     }
     .modal-close-btn:hover {
@@ -272,66 +266,64 @@
     }
 
     .modal-header-hero {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #fff;
-      padding: 32px;
+      padding: 30px;
       display: flex;
       gap: 20px;
       align-items: center;
-      position: relative;
+      transition: background 0.3s;
     }
     .modal-avatar-lg {
-      width: 84px;
-      height: 84px;
-      border-radius: 50%;
-      background: #fff;
-      font-size: 2.4rem;
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background: #ffffff;
+      font-size: 2.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
-    .modal-body-content {
-      padding: 30px;
-    }
-    .info-block { margin-bottom: 22px; }
-    .info-block h4 {
-      font-size: 1.05rem;
+    .modal-body-content { padding: 28px; }
+
+    .modal-info-block { margin-bottom: 20px; }
+    .modal-info-block h4 {
+      font-size: 1rem;
       color: var(--primary);
       margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
-    .schedule-table {
+    .modal-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 8px;
       font-size: 0.9rem;
     }
-    .schedule-table th, .schedule-table td {
+    .modal-table th, .modal-table td {
       border: 1px solid var(--border);
-      padding: 10px 14px;
+      padding: 10px 12px;
       text-align: left;
     }
-    .schedule-table th { background: #f8fafc; color: var(--text-muted); font-weight: 600; }
+    .modal-table th { background: #f8fafc; color: var(--muted); font-weight: 600; }
 
-    /* Interactive Appointment Booking Form */
-    .booking-box {
+    /* Interactive Form Inside Modal */
+    .modal-form-box {
       margin-top: 24px;
       padding: 20px;
       background: #f8fafc;
       border-radius: 12px;
       border: 1px solid var(--border);
     }
-    .booking-form-grid {
+    .form-grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin: 12px 0;
     }
-    .form-input {
+    .modal-input {
       width: 100%;
       padding: 10px 14px;
       border: 1px solid #cbd5e1;
@@ -340,9 +332,9 @@
       font-size: 0.9rem;
       outline: none;
     }
-    .form-input:focus { border-color: var(--primary); }
+    .modal-input:focus { border-color: var(--primary); }
 
-    .btn-submit-appointment {
+    .btn-submit-modal {
       width: 100%;
       background: var(--primary);
       color: #fff;
@@ -353,49 +345,22 @@
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
-      transition: background 0.2s, transform 0.1s;
+      transition: opacity 0.2s;
     }
-    .btn-submit-appointment:hover {
-      background: var(--primary-hover);
-      transform: translateY(-1px);
-    }
-    .btn-submit-appointment:active { transform: translateY(0); }
+    .btn-submit-modal:hover { opacity: 0.92; }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes modalPop {
-      from {
-        opacity: 0;
-        transform: scale(0.92);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* Responsive */
     @media (max-width: 600px) {
-      .modal-card { max-height: 95vh; border-radius: 16px; }
-      .modal-header-hero { flex-direction: column; text-align: center; padding: 24px; }
-      .booking-form-grid { grid-template-columns: 1fr; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .modal-header-hero { flex-direction: column; text-align: center; }
     }
 
-    /* Footer */
     footer {
-      background-color: #0f172a;
+      background: #0f172a;
       color: #94a3b8;
-      padding: 50px 24px 20px 24px;
-      margin-top: 60px;
-    }
-    .footer-bottom {
+      padding: 40px 20px;
       text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid #1e293b;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      margin-top: 60px;
     }
   </style>
 </head>
@@ -403,303 +368,313 @@
 
   <!-- Top Emergency Bar -->
   <div class="top-bar">
-    <div class="emergency-hotline">
-      <span class="hotline-badge">EMERGENCY</span>
-      <span>ศูนย์อุบัติเหตุและฉุกเฉินตลอด 24 ชั่วโมง: โทร <strong>1719</strong></span>
+    <div>
+      <span class="hotline-tag">HOTLINE 1719</span>
+      <span>ศูนย์อุบัติเหตุ-ฉุกเฉินระดับตติยภูมิ ให้บริการ 24 ชั่วโมง</span>
     </div>
-    <div><span>🌐 ภาษาไทย | English</span></div>
+    <div><span>🌐 TH | EN</span></div>
   </div>
 
   <!-- Navbar -->
-  <nav class="navbar">
+  <nav>
     <div class="nav-container">
       <a href="#" class="brand"><span>🏥</span> Bangkok Health Hospital</a>
-      <ul class="nav-menu">
-        <li><a href="#doctors">ค้นหาแพทย์</a></li>
-        <li><a href="#packages">แพ็กเกจสุขภาพ</a></li>
-        <li><a href="#contact">ติดต่อเรา</a></li>
+      <ul class="menu">
+        <li><a href="javascript:void(0)" onclick="setCategory('all')">ดูทั้งหมด</a></li>
+        <li><a href="javascript:void(0)" onclick="setCategory('doctor')">แพทย์เฉพาะทาง</a></li>
+        <li><a href="javascript:void(0)" onclick="setCategory('package')">แพ็กเกจสุขภาพ</a></li>
+        <li><a href="javascript:void(0)" onclick="setCategory('clinic')">ศูนย์ความเป็นเลิศ</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero Header -->
+  <!-- Hero Section -->
   <header class="hero">
-    <h1>มาตรฐานการแพทย์สากล เพื่อคุณภาพชีวิตที่ดีของคุณ</h1>
-    <p>คลิกที่รายชื่อแพทย์หรือแพ็กเกจ เพื่อเปิดดูรายละเอียดเชิงลึกและทำการนัดหมายได้ทันที</p>
+    <h1>มาตรฐานการแพทย์สากล ดูแลคุณในทุกช่วงวัย</h1>
+    <p>คลิกที่การ์ดรายการใดก็ได้ เพื่อเปิดดูข้อมูลเชิงลึกและทำนัดหมายผ่านเลเยอร์มาตรฐานเดียวกัน</p>
   </header>
 
-  <!-- Quick Action Cards -->
-  <div class="quick-actions-container">
-    <div class="quick-grid">
-      <a href="#doctors" class="quick-card">
-        <div class="quick-icon">👨‍⚕️</div>
-        <h3>ค้นหาแพทย์</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">ดูประวัติ & ตารางตรวจ</p>
-      </a>
-      <a href="#packages" class="quick-card">
-        <div class="quick-icon">📋</div>
-        <h3>แพ็กเกจสุขภาพ</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">โปรแกรมตรวจสุขภาพประจำปี</p>
-      </a>
-      <a href="javascript:void(0)" class="quick-card" onclick="openDoctorDetail(0)">
-        <div class="quick-icon">📅</div>
-        <h3>ทำนัดหมายด่วน</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">เปิดเลเยอร์นัดหมาย</p>
-      </a>
-      <a href="tel:1719" class="quick-card">
-        <div class="quick-icon">🚑</div>
-        <h3>สายด่วน 1719</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">ฉุกเฉินตลอด 24 ชม.</p>
-      </a>
-    </div>
+  <!-- Filter Buttons -->
+  <div class="filter-wrap">
+    <button class="filter-btn active" onclick="setCategory('all', this)">✨ แสดงทั้งหมด</button>
+    <button class="filter-btn" onclick="setCategory('doctor', this)">🩺 แพทย์เฉพาะทาง</button>
+    <button class="filter-btn" onclick="setCategory('package', this)">🎁 แพ็กเกจตรวจสุขภาพ</button>
+    <button class="filter-btn" onclick="setCategory('clinic', this)">🏥 ศูนย์การแพทย์เฉพาะทาง</button>
   </div>
 
-  <!-- Doctor Search Section -->
-  <section id="doctors" class="container">
-    <h2 class="section-title">แพทย์เฉพาะทาง</h2>
-    <p class="section-subtitle">คลิกที่การ์ดแพทย์ท่านใดก็ได้ เพื่อเปิด "เลเยอร์ประวัติและตารางออกตรวจ"</p>
-
-    <div class="search-box-wrap">
-      <input type="text" id="doctorSearch" class="search-input" placeholder="พิมพ์ชื่อแพทย์ หรือแผนก (เช่น หัวใจ, กระดูก, สมอง, เด็ก)..." oninput="filterDoctors()">
+  <!-- Main Grid Container -->
+  <main class="container">
+    <div class="items-grid" id="mainGrid">
+      <!-- ข้อมูลถูก Render ผ่าน JavaScript -->
     </div>
-
-    <div class="doctor-grid" id="doctorGrid">
-      <!-- แสดงผลการ์ดแพทย์ผ่าน JavaScript -->
-    </div>
-  </section>
+  </main>
 
   <!-- ============================================== -->
-  <!-- 🌟 โครงสร้าง MODAL LAYER (ปรับแต่งดีไซน์ใหม่) 🌟 -->
+  <!-- 🌟 UNIVERSAL MODAL LAYER (ใช้ตัวเดียวทั้งระบบ) 🌟 -->
   <!-- ============================================== -->
-  <div id="detailModal" class="modal-overlay" onclick="closeModal(event)">
+  <div id="universalModal" class="modal-overlay" onclick="handleOverlayClick(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="closeModalDirect()" title="ปิดหน้าต่าง">&times;</button>
+      <button class="modal-close-btn" onclick="closeUniversalModal()">&times;</button>
 
-      <div class="modal-header-hero">
-        <div class="modal-avatar-lg" id="mAvatar">🩺</div>
+      <!-- Modal Header (เปลี่ยนสีและไอคอนตามหมวดหมู่โดยอัตโนมัติ) -->
+      <div class="modal-header-hero" id="modalHeaderBg">
+        <div class="modal-avatar-lg" id="modalIcon">🩺</div>
         <div>
-          <h2 id="mName" style="font-size: 1.45rem; font-weight: 700;">ชื่อแพทย์</h2>
-          <p id="mDept" style="opacity: 0.95; font-size: 0.95rem;">แผนกเฉพาะทาง</p>
+          <span class="badge-pill" id="modalCategoryBadge" style="background: rgba(255,255,255,0.25); color: #fff;">หมวดหมู่</span>
+          <h2 id="modalTitle" style="font-size: 1.45rem; font-weight: 700; margin: 4px 0;">ชื่อรายการ</h2>
+          <p id="modalSubtitle" style="opacity: 0.95; font-size: 0.95rem;">คำอธิบายรอง</p>
         </div>
       </div>
 
+      <!-- Modal Body -->
       <div class="modal-body-content">
-        <div class="info-block">
-          <h4>🎓 ประวัติการศึกษาและความชำนาญ</h4>
-          <p id="mEducation" style="color: var(--text-muted); font-size: 0.9rem;">-</p>
+        <div class="modal-info-block">
+          <h4 id="blockTitle1">📌 ข้อมูลและรายละเอียด</h4>
+          <p id="modalDetail" style="color: var(--muted); font-size: 0.95rem;">-</p>
         </div>
 
-        <div class="info-block">
-          <h4>🏥 ศูนย์การรักษา / แผนก</h4>
-          <p id="mClinic" style="color: var(--text-muted); font-size: 0.9rem;">-</p>
-        </div>
-
-        <div class="info-block">
-          <h4>📅 ตารางออกตรวจประจำสัปดาห์</h4>
-          <table class="schedule-table">
-            <thead>
-              <tr>
-                <th>วันตรวจ</th>
-                <th>ช่วงเวลา</th>
-                <th>สถานที่</th>
-              </tr>
-            </thead>
-            <tbody id="mScheduleBody">
-              <!-- ข้อมูลตารางตรวจจะถูกเติมที่นี่ -->
-            </tbody>
+        <div class="modal-info-block">
+          <h4 id="blockTitle2">📊 รายละเอียด / ตารางเวลา / ราคา</h4>
+          <table class="modal-table">
+            <thead id="modalTableHead"></thead>
+            <tbody id="modalTableBody"></tbody>
           </table>
         </div>
 
-        <!-- ฟอร์มนัดหมายในตัวเลเยอร์ -->
-        <div class="booking-box">
-          <h4 style="color: var(--primary); margin-bottom: 8px;">🗓️ นัดหมายคิวตรวจแพทย์ท่านนี้</h4>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">กรอกข้อมูลเพื่อให้เจ้าหน้าที่ประสานงานและยืนยันคิวตรวจกลับ</p>
-          
-          <div class="booking-form-grid">
-            <input type="text" id="patientName" class="form-input" placeholder="ชื่อ-นามสกุล ผู้เข้ารับการตรวจ">
-            <input type="tel" id="patientTel" class="form-input" placeholder="เบอร์โทรศัพท์ติดต่อ (10 หลัก)">
-          </div>
-          
-          <div style="margin-bottom: 12px;">
-            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">เลือกวันที่ต้องการนัดตรวจ:</label>
-            <input type="date" id="patientDate" class="form-input">
+        <!-- Universal Booking Form -->
+        <div class="modal-form-box">
+          <h4 style="color: var(--primary); margin-bottom: 6px;" id="modalFormTitle">📝 ทำนัดหมาย / ขอรับสิทธิ์โปรแกรมนี้</h4>
+          <p style="font-size: 0.85rem; color: var(--muted);">กรอกข้อมูลเพื่อให้เจ้าหน้าที่ประสานงานและติดต่อกลับทันที</p>
+
+          <div class="form-grid-2">
+            <input type="text" id="custName" class="modal-input" placeholder="ชื่อ-นามสกุล">
+            <input type="tel" id="custTel" class="modal-input" placeholder="เบอร์โทรศัพท์ติดต่อ">
           </div>
 
-          <button class="btn-submit-appointment" onclick="confirmAppointment()">
-            ส่งคำขอนัดหมายแพทย์ทันที
+          <div style="margin-bottom: 12px;">
+            <label style="font-size: 0.85rem; color: var(--muted); display: block; margin-bottom: 4px;">ระบุวันที่สะดวกรับบริการ:</label>
+            <input type="date" id="custDate" class="modal-input">
+          </div>
+
+          <button class="btn-submit-modal" onclick="submitUniversalForm()">
+            ยืนยันคำขอรับบริการ
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
-    <div class="footer-bottom">
-      <p>© 2025 Bangkok Health Medical Center. ระบบเว็บไซต์ต้นแบบพร้อมเลเยอร์เจาะลึกข้อมูล</p>
-    </div>
+    <p>© 2025 Bangkok Health Medical Center. Unified Layer Architecture.</p>
   </footer>
 
-  <!-- ===================================== -->
-  <!-- 🌟 JAVASCRIPT ควบคุมการทำงานของเลเยอร์ 🌟 -->
-  <!-- ===================================== -->
+  <!-- ============================================== -->
+  <!-- 🌟 JAVASCRIPT: จัดการข้อมูลและ Universal Modal 🌟 -->
+  <!-- ============================================== -->
   <script>
-    // 1. คลังข้อมูลแพทย์เชิงลึก
-    const doctors = [
+    // คลังข้อมูลรูปแบบมาตรฐานเดียวกัน (Unified Schema)
+    const portalItems = [
+      // 1. หมวดแพทย์เฉพาะทาง
       {
-        id: 0,
-        name: "นพ. กิตติศักดิ์ เจริญสุข",
-        dept: "ศูนย์หัวใจและหลอดเลือด",
-        bio: "ผู้เชี่ยวชาญด้านสรีรวิทยาไฟฟ้าหัวใจ ประสบการณ์กว่า 15 ปี",
-        education: "แพทยศาสตรบัณฑิต (เกียรตินิยมอันดับ 1) จุฬาลงกรณ์มหาวิทยาลัย, วุฒิบัตรอายุรศาสตร์โรคหัวใจ รพ.ศิริราช, Fellowship in Cardiac Electrophysiology (สหรัฐอเมริกา)",
-        clinic: "ศูนย์หัวใจ อาคาร A ชั้น 2",
-        schedule: [
-          { day: "จันทร์ - อังคาร", time: "09:00 - 16:00 น.", room: "ห้องตรวจหัวใจ 204" },
-          { day: "พฤหัสบดี", time: "13:00 - 18:00 น.", room: "ห้องตรวจหัวใจ 204" },
-          { day: "เสาร์", time: "09:00 - 12:00 น.", room: "คลินิกพิเศษนอกเวลา" }
+        id: "doc-1",
+        type: "doctor",
+        categoryName: "แพทย์เฉพาะทาง",
+        themeColor: "linear-gradient(135deg, #005a9c, #004070)",
+        icon: "🩺",
+        title: "นพ. กิตติศักดิ์ เจริญสุข",
+        subtitle: "ศูนย์หัวใจและหลอดเลือด",
+        desc: "ผู้เชี่ยวชาญด้านสรีรวิทยาไฟฟ้าหัวใจ ประสบการณ์กว่า 15 ปี",
+        detail: "แพทยศาสตรบัณฑิต จุฬาลงกรณ์มหาวิทยาลัย, วุฒิบัตรอายุรศาสตร์โรคหัวใจ ศิริราช, Fellowship in Cardiac Electrophysiology (USA)",
+        columns: ["วันตรวจ", "ช่วงเวลา", "สถานที่"],
+        tableData: [
+          ["จันทร์ - อังคาร", "09:00 - 16:00 น.", "ศูนย์หัวใจ อาคาร A ชั้น 2"],
+          ["พฤหัสบดี", "13:00 - 18:00 น.", "ห้องตรวจ 204"],
+          ["เสาร์", "09:00 - 12:00 น.", "คลินิกพิเศษนอกเวลา"]
         ]
       },
       {
-        id: 1,
-        name: "พญ. นันทวัน วงศ์สวัสดิ์",
-        dept: "ศูนย์สมองและระบบประสาท",
-        bio: "แพทย์เฉพาะทางด้านโรคหลอดเลือดสมองและระบบประสาท",
-        education: "แพทยศาสตรบัณฑิต มหาวิทยาลัยมหิดล, วุฒิบัตรประสาทวิทยา สถาบันประสาทวิทยา, Certificate in Stroke Management",
-        clinic: "ศูนย์สมองและระบบประสาท อาคาร B ชั้น 3",
-        schedule: [
-          { day: "อังคาร - พุธ", time: "10:00 - 16:00 น.", room: "ห้องตรวจสมอง 302" },
-          { day: "ศุกร์", time: "09:00 - 15:00 น.", room: "ห้องตรวจสมอง 302" }
+        id: "doc-2",
+        type: "doctor",
+        categoryName: "แพทย์เฉพาะทาง",
+        themeColor: "linear-gradient(135deg, #005a9c, #004070)",
+        icon: "🧠",
+        title: "พญ. นันทวัน วงศ์สวัสดิ์",
+        subtitle: "ศูนย์สมองและระบบประสาท",
+        desc: "แพทย์เฉพาะทางด้านโรคหลอดเลือดสมอง และการฟื้นฟูระบบประสาท",
+        detail: "แพทยศาสตรบัณฑิต มหาวิทยาลัยมหิดล, วุฒิบัตรประสาทวิทยา สถาบันประสาทวิทยา, Certificate in Stroke Management",
+        columns: ["วันตรวจ", "ช่วงเวลา", "สถานที่"],
+        tableData: [
+          ["อังคาร - พุธ", "10:00 - 16:00 น.", "ศูนย์สมอง อาคาร B ชั้น 3"],
+          ["ศุกร์", "09:00 - 15:00 น.", "ห้องตรวจสมอง 302"]
+        ]
+      },
+      // 2. หมวดแพ็กเกจสุขภาพ
+      {
+        id: "pkg-1",
+        type: "package",
+        categoryName: "แพ็กเกจตรวจสุขภาพ",
+        themeColor: "linear-gradient(135deg, #059669, #047857)",
+        icon: "🎁",
+        title: "Executive Health Check-up 2025",
+        subtitle: "โปรแกรมตรวจสุขภาพเชิงลึกสำหรับผู้บริหาร",
+        desc: "ตรวจคัดกรองความเสี่ยงโรคหัวใจ มะเร็ง และระบบเผาผลาญ รวม 28 รายการ",
+        detail: "รวมบริการอาหารว่าง, สมุดรายงานผลสุขภาพพร้อมคำแนะนำจากแพทย์เฉพาะทาง, และสิทธิประโยชน์ส่วนลดค่ายา 10%",
+        columns: ["รายการตรวจหลัก", "ผลวิเคราะห์", "ราคาปกติ / พิเศษ"],
+        tableData: [
+          ["ตรวจเลือดหาสารบ่งชี้มะเร็ง 5 ชนิด", "ครบถ้วน", "ปกติ 18,500.-"],
+          ["อัลตราซาวด์ช่องท้องทั้งหมด (Whole Abdomen)", "ความละเอียดสูง", "พิเศษ 12,900.-"],
+          ["ตรวจคลื่นไฟฟ้าหัวใจ (EKG / EST)", "แพทย์ประเมิน", "รวมในแพ็กเกจ"]
         ]
       },
       {
-        id: 2,
-        name: "นพ. ธนากร ฤทธิเดช",
-        dept: "ศูนย์กระดูกและข้อ",
-        bio: "เชี่ยวชาญการผ่าตัดเปลี่ยนข้อเข่าและข้อสะโพกเทียมด้วยเทคโนโลยีส่องกล้อง",
-        education: "แพทยศาสตรบัณฑิต มหาวิทยาลัยเชียงใหม่, วุฒิบัตรศัลยศาสตร์ออร์โธปิดิกส์, Fellowship in Joint Reconstruction (เยอรมนี)",
-        clinic: "ศูนย์กระดูกและข้อ อาคาร A ชั้น 1",
-        schedule: [
-          { day: "จันทร์ - พุธ - ศุกร์", time: "08:30 - 15:00 น.", room: "ห้องตรวจกระดูก 105" },
-          { day: "อาทิตย์", time: "09:00 - 12:00 น.", room: "คลินิกนอกเวลา" }
+        id: "pkg-2",
+        type: "package",
+        categoryName: "แพ็กเกจตรวจสุขภาพ",
+        themeColor: "linear-gradient(135deg, #059669, #047857)",
+        icon: "❤️",
+        title: "Smart Heart Screening",
+        subtitle: "โปรแกรมคัดกรองความเสี่ยงหลอดเลือดหัวใจ",
+        desc: "ตรวจสมรรถภาพหัวใจขณะออกกำลังกาย (EST) และตรวจแคลเซียมหลอดเลือด (CAC)",
+        detail: "เหมาะสำหรับผู้มีประวัติครอบครัวเป็นโรคหัวใจ หรือมีภาวะความดันโลหิตและไขมันในเลือดสูง",
+        columns: ["รายการตรวจ", "ระยะเวลา", "ราคาโปรโมชัน"],
+        tableData: [
+          ["Coronary Calcium Score (CAC)", "15 นาที", "3,900.-"],
+          ["Echo & Exercise Stress Test", "45 นาที", "6,500.-"],
+          ["รวมแพ็กเกจตรวจคู่ (Special Duo)", "ประมาณ 1.5 ชม.", "8,900.- (ประหยัด 20%)"]
         ]
       },
+      // 3. หมวดศูนย์ความเป็นเลิศทางการแพทย์
       {
-        id: 3,
-        name: "พญ. ภัทรพร มณีรัตน์",
-        dept: "ศูนย์สุขภาพเด็กและทารก",
-        bio: "กุมารแพทย์เฉพาะทางโรคภูมิแพ้และภูมิคุ้มกันในเด็ก",
-        education: "แพทยศาสตรบัณฑิต มหาวิทยาลัยขอนแก่น, วุฒิบัตรกุมารเวชศาสตร์, อนุสาขากุมารเวชศาสตร์โรคภูมิแพ้และภูมิคุ้มกัน",
-        clinic: "ศูนย์กุมารเวช 24 ชั่วโมง อาคารเด็ก ชั้น 1",
-        schedule: [
-          { day: "ทุกวันจันทร์ - พฤหัสบดี", time: "08:00 - 14:00 น.", room: "ห้องตรวจเด็ก 101" },
-          { day: "เสาร์ - อาทิตย์", time: "09:00 - 16:00 น.", room: "ห้องตรวจเด็ก 102" }
+        id: "cln-1",
+        type: "clinic",
+        categoryName: "ศูนย์ความเป็นเลิศ",
+        themeColor: "linear-gradient(135deg, #d97706, #b45309)",
+        icon: "🏥",
+        title: "ศูนย์กระดูก ข้อ และข้อเข่าครบวงจร",
+        subtitle: "อาคาร A ชั้น 1 (เปิดบริการ 24 ชม.)",
+        desc: "เทคโนโลยีผ่าตัดส่องกล้องแผลเล็ก ฟื้นตัวไว พร้อมทีมกายภาพบำบัดเฉพาะบุคคล",
+        detail: "ให้บริการวินิจฉัยและรักษาอาการปวดข้อเข่า ข้อสะโพก กระดูกสันหลัง และเวชศาสตร์การกีฬาด้วยหุ่นยนต์ช่วยผ่าตัด",
+        columns: ["บริการ", "เวลาเปิดทำการ", "เบอร์โทรภายใน"],
+        tableData: [
+          ["คลินิกข้อเข่าและข้อสะโพก", "08:00 - 20:00 น.", "โทร. 1104"],
+          ["ศูนย์เวชศาสตร์การกีฬาและกายภาพ", "08:00 - 18:00 น.", "โทร. 1105"],
+          ["หน่วยอุบัติเหตุกระดูกหักฉุกเฉิน", "24 ชั่วโมง", "โทร. 1719"]
         ]
       }
     ];
 
-    let currentSelectedDoctor = null;
+    let currentItem = null;
+    let currentFilter = 'all';
 
-    // 2. ฟังก์ชันวาดการ์ดแพทย์หน้าแรก
-    function renderDoctors(list) {
-      const grid = document.getElementById('doctorGrid');
+    // วาดการ์ดทั้งหมดลงหน้าเว็บ
+    function renderCards() {
+      const grid = document.getElementById('mainGrid');
       grid.innerHTML = '';
-      if (list.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">ไม่พบข้อมูลแพทย์ที่ค้นหา</p>';
-        return;
-      }
-      list.forEach(doc => {
+
+      const filtered = currentFilter === 'all' 
+        ? portalItems 
+        : portalItems.filter(item => item.type === currentFilter);
+
+      filtered.forEach(item => {
+        let badgeColor = item.type === 'doctor' ? '#eff6ff; color: #2563eb' : (item.type === 'package' ? '#ecfdf5; color: #059669' : '#fffbeb; color: #d97706');
+
         const card = document.createElement('div');
-        card.className = 'doctor-card';
-        card.onclick = () => openDoctorDetail(doc.id);
+        card.className = 'unified-card';
+        card.onclick = () => openUniversalModal(item.id);
         card.innerHTML = `
-          <div class="doctor-avatar">🩺</div>
-          <div class="doctor-name">${doc.name}</div>
-          <div class="doctor-dept">${doc.dept}</div>
-          <div class="doctor-bio">${doc.bio}</div>
-          <button class="btn-view-profile" onclick="event.stopPropagation(); openDoctorDetail(${doc.id})">🔍 ดูประวัติ & ตารางตรวจ</button>
+          <div>
+            <div class="card-top">
+              <div class="card-icon-badge">${item.icon}</div>
+              <div>
+                <span class="badge-pill" style="background: ${badgeColor};">${item.categoryName}</span>
+                <div class="card-title">${item.title}</div>
+              </div>
+            </div>
+            <p class="card-desc">${item.desc}</p>
+          </div>
+          <button class="btn-action-view">🔍 ดูรายละเอียด & จองนัดหมาย</button>
         `;
         grid.appendChild(card);
       });
     }
 
-    // 3. ฟังก์ชันเปิดเลเยอร์ซ้อน (Open Modal Layer)
-    function openDoctorDetail(doctorId) {
-      const doc = doctors.find(d => d.id === doctorId) || doctors[0];
-      currentSelectedDoctor = doc;
+    // กรองประเภท
+    function setCategory(type, btnElement) {
+      currentFilter = type;
+      if (btnElement) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
+      renderCards();
+    }
 
-      // เติมข้อมูลลงในเลเยอร์
-      document.getElementById('mName').textContent = doc.name;
-      document.getElementById('mDept').textContent = doc.dept;
-      document.getElementById('mEducation').textContent = doc.education;
-      document.getElementById('mClinic').textContent = doc.clinic;
+    // เปิด Universal Modal โดยรับ id กลาง
+    function openUniversalModal(id) {
+      const item = portalItems.find(i => i.id === id);
+      if (!item) return;
+      currentItem = item;
 
-      // เติมตารางตรวจ
-      const tbody = document.getElementById('mScheduleBody');
+      // ปรับแต่ง Header ให้สอดคล้องกับหมวดหมู่
+      document.getElementById('modalHeaderBg').style.background = item.themeColor;
+      document.getElementById('modalIcon').textContent = item.icon;
+      document.getElementById('modalCategoryBadge').textContent = item.categoryName;
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalSubtitle').textContent = item.subtitle;
+      document.getElementById('modalDetail').textContent = item.detail;
+
+      // สร้างหัวตาราง
+      const thead = document.getElementById('modalTableHead');
+      thead.innerHTML = `<tr>${item.columns.map(col => `<th>${col}</th>`).join('')}</tr>`;
+
+      // สร้างแถวข้อมูลในตาราง
+      const tbody = document.getElementById('modalTableBody');
       tbody.innerHTML = '';
-      doc.schedule.forEach(item => {
+      item.tableData.forEach(row => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td style="font-weight: 600;">${item.day}</td>
-          <td>${item.time}</td>
-          <td style="color: var(--text-muted);">${item.room}</td>
-        `;
+        tr.innerHTML = row.map((cell, idx) => `<td style="${idx === 0 ? 'font-weight:600;' : ''}">${cell}</td>`).join('');
         tbody.appendChild(tr);
       });
 
-      // สั่งแสดงเลเยอร์
-      document.getElementById('detailModal').classList.add('active');
+      // แสดง Modal
+      document.getElementById('universalModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    // 4. ฟังก์ชันปิดเลเยอร์ (Close Modal Layer)
-    function closeModalDirect() {
-      document.getElementById('detailModal').classList.remove('active');
+    // ปิด Modal
+    function closeUniversalModal() {
+      document.getElementById('universalModal').classList.remove('active');
       document.body.style.overflow = 'auto';
     }
 
-    function closeModal(e) {
-      if (e.target.id === 'detailModal') {
-        closeModalDirect();
-      }
+    function handleOverlayClick(e) {
+      if (e.target.id === 'universalModal') closeUniversalModal();
     }
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModalDirect();
+      if (e.key === 'Escape') closeUniversalModal();
     });
 
-    // 5. ระบบค้นหา Real-time
-    function filterDoctors() {
-      const keyword = document.getElementById('doctorSearch').value.toLowerCase().trim();
-      const filtered = doctors.filter(doc => 
-        doc.name.toLowerCase().includes(keyword) || 
-        doc.dept.toLowerCase().includes(keyword)
-      );
-      renderDoctors(filtered);
-    }
-
-    // 6. ส่งคำขอนัดหมายพร้อมตรวจสอบข้อมูล
-    function confirmAppointment() {
-      const name = document.getElementById('patientName').value.trim();
-      const tel = document.getElementById('patientTel').value.trim();
-      const date = document.getElementById('patientDate').value;
+    // ยืนยันฟอร์ม
+    function submitUniversalForm() {
+      const name = document.getElementById('custName').value.trim();
+      const tel = document.getElementById('custTel').value.trim();
+      const date = document.getElementById('custDate').value;
 
       if (!name || !tel) {
-        alert('กรุณากรอกชื่อ-นามสกุล และเบอร์โทรศัพท์เพื่อให้นัดหมายสำเร็จครับ');
+        alert('กรุณากรอกชื่อและเบอร์โทรศัพท์ติดต่อให้ครบถ้วนครับ');
         return;
       }
 
-      alert(`✅ ส่งคำขอนัดหมายสำเร็จ!\n\nแพทย์: ${currentSelectedDoctor.name}\nผู้ตรวจ: ${name}\nเบอร์โทร: ${tel}\nวันที่นัด: ${date || 'ให้เจ้าหน้าที่ติดต่อแนะนำวันว่าง'}\n\nเจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันคิวตรวจครับ`);
-      
-      // ล้างข้อมูลในฟอร์ม
-      document.getElementById('patientName').value = '';
-      document.getElementById('patientTel').value = '';
-      document.getElementById('patientDate').value = '';
-      
-      closeModalDirect();
+      alert(`✅ บันทึกคำขอสำเร็จ!\n\nรายการ: ${currentItem.title}\nผู้รับบริการ: ${name}\nเบอร์โทร: ${tel}\nวันที่ระบุ: ${date || 'ไม่ระบุวัน (รอเจ้าหน้าที่โทรนัด)'}\n\nระบบจะส่งข้อมูลไปยังทีมงานของโรงพยาบาลทันทีครับ`);
+
+      document.getElementById('custName').value = '';
+      document.getElementById('custTel').value = '';
+      document.getElementById('custDate').value = '';
+      closeUniversalModal();
     }
 
-    // สั่งวาดการ์ดตอนโหลดหน้าเว็บ
-    renderDoctors(doctors);
+    // เริ่มต้นแสดงผลหน้าเว็บ
+    renderCards();
   </script>
 </body>
 </html>
