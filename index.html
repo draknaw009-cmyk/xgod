@@ -11,15 +11,23 @@
     :root {
       --primary: #005a9c;
       --secondary: #00a896;
-      --accent-package: #059669;
-      --accent-center: #d97706;
-      --bg: #f8fafc;
+      --bg: #f4f7fa;
       --surface: #ffffff;
       --text: #1e293b;
       --muted: #64748b;
       --border: #e2e8f0;
       --radius: 16px;
       --shadow: 0 4px 14px rgba(0,0,0,0.06);
+
+      /* Icon Set Palette from Uploaded Graphic */
+      --icon-navy: #324b6a;
+      --icon-purple: #483d5a;
+      --icon-orange: #d4633f;
+      --icon-amber: #b89b4f;
+      --icon-teal: #2f695e;
+      --icon-blue: #4a7c9b;
+      --icon-rust: #c25438;
+      --icon-deep-purple: #3e334d;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,7 +59,6 @@
       margin-right: 8px;
     }
 
-    /* Language Switcher Buttons */
     .lang-switcher {
       display: inline-flex;
       background: rgba(255, 255, 255, 0.15);
@@ -83,7 +90,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 16px 24px;
+      padding: 14px 24px;
     }
     .nav-container {
       max-width: 1200px;
@@ -94,14 +101,26 @@
       gap: 16px;
     }
     .brand {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--primary);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
+    .brand-icon-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--icon-amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .brand-icon-circle svg { width: 22px; height: 22px; fill: #ffffff; }
+
     .menu { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
     .menu a {
       text-decoration: none;
@@ -113,18 +132,65 @@
 
     /* Hero */
     .hero {
-      background: linear-gradient(135deg, rgba(0, 90, 156, 0.93), rgba(0, 168, 150, 0.85)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80') center/cover;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(0, 90, 156, 0.82)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80') center/cover;
       color: #fff;
-      padding: 70px 24px 90px 24px;
+      padding: 60px 24px 80px 24px;
       text-align: center;
     }
-    .hero h1 { font-size: 2.3rem; margin-bottom: 12px; }
-    .hero p { font-size: 1.1rem; max-width: 680px; margin: 0 auto; opacity: 0.95; }
+    .hero h1 { font-size: 2.2rem; margin-bottom: 12px; }
+    .hero p { font-size: 1.05rem; max-width: 680px; margin: 0 auto; opacity: 0.95; }
+
+    /* Quick Medical Icon Strip (นำไอคอนจากรูปมาแสดงเป็นแถบทางลัดบริการ) */
+    .quick-icon-section {
+      max-width: 1200px;
+      margin: -40px auto 30px auto;
+      padding: 0 20px;
+    }
+    .quick-icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+      border: 1px solid var(--border);
+    }
+    .quick-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      padding: 10px 6px;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+    .quick-icon-item:hover {
+      background: #f8fafc;
+      transform: translateY(-3px);
+    }
+    .quick-circle-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      transition: transform 0.2s;
+    }
+    .quick-icon-item:hover .quick-circle-icon {
+      transform: scale(1.08);
+    }
+    .quick-circle-icon svg { width: 28px; height: 28px; fill: #ffffff; }
+    .quick-icon-title { font-size: 0.8rem; font-weight: 600; color: var(--text); }
 
     /* Filter Tabs */
     .filter-wrap {
       max-width: 1200px;
-      margin: -24px auto 30px auto;
+      margin: 10px auto 30px auto;
       padding: 0 20px;
       display: flex;
       justify-content: center;
@@ -134,17 +200,14 @@
     .filter-btn {
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 12px 24px;
+      padding: 10px 22px;
       border-radius: 30px;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       cursor: pointer;
       font-family: inherit;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     .filter-btn.active {
       background: var(--primary);
@@ -152,7 +215,7 @@
       border-color: var(--primary);
     }
 
-    /* Container & Standard Grid */
+    /* Container & Cards Grid */
     .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
     .items-grid {
       display: grid;
@@ -160,7 +223,7 @@
       gap: 24px;
     }
 
-    /* Standard Card Pattern */
+    /* Unified Card */
     .unified-card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -184,17 +247,18 @@
       gap: 16px;
       margin-bottom: 16px;
     }
-    .card-icon-badge {
+    .card-circle-icon {
       width: 58px;
       height: 58px;
-      border-radius: 12px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
-      background: #f1f5f9;
       flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
     }
+    .card-circle-icon svg { width: 30px; height: 30px; fill: #ffffff; }
+
     .badge-pill {
       display: inline-block;
       font-size: 0.75rem;
@@ -233,15 +297,11 @@
       color: #fff;
     }
 
-    /* ============================================================ */
-    /* 🌟 UNIVERSAL MODAL LAYER (รูปแบบเดียว รองรับ 2 ภาษา) 🌟        */
-    /* ============================================================ */
+    /* Universal Modal Layer */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -271,12 +331,10 @@
 
     .modal-close-btn {
       position: absolute;
-      top: 16px;
-      right: 16px;
+      top: 16px; right: 16px;
       background: rgba(255, 255, 255, 0.25);
       border: none;
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       border-radius: 50%;
       font-size: 1.3rem;
       color: #ffffff;
@@ -299,20 +357,19 @@
       gap: 20px;
       align-items: center;
     }
-    .modal-avatar-lg {
-      width: 80px;
-      height: 80px;
-      border-radius: 16px;
-      background: #ffffff;
-      font-size: 2.5rem;
+    .modal-avatar-circle {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
     }
-    .modal-body-content { padding: 28px; }
+    .modal-avatar-circle svg { width: 42px; height: 42px; fill: #ffffff; }
 
+    .modal-body-content { padding: 28px; }
     .modal-info-block { margin-bottom: 20px; }
     .modal-info-block h4 {
       font-size: 1rem;
@@ -335,7 +392,7 @@
     }
     .modal-table th { background: #f8fafc; color: var(--muted); font-weight: 600; }
 
-    /* Booking Form inside Modal */
+    /* Form inside modal */
     .modal-form-box {
       margin-top: 24px;
       padding: 20px;
@@ -378,6 +435,7 @@
     @media (max-width: 600px) {
       .form-grid-2 { grid-template-columns: 1fr; }
       .modal-header-hero { flex-direction: column; text-align: center; }
+      .quick-icon-grid { grid-template-columns: repeat(4, 1fr); }
     }
 
     footer {
@@ -392,7 +450,7 @@
 </head>
 <body>
 
-  <!-- Top Emergency Bar & Language Toggle -->
+  <!-- Top Emergency & Language Bar -->
   <div class="top-bar">
     <div>
       <span class="hotline-tag">HOTLINE 1719</span>
@@ -410,7 +468,13 @@
   <!-- Navbar -->
   <nav>
     <div class="nav-container">
-      <a href="#" class="brand"><span>🏥</span> Bangkok Health Hospital</a>
+      <a href="#" class="brand">
+        <div class="brand-icon-circle">
+          <!-- Hospital building icon -->
+          <svg viewBox="0 0 24 24"><path d="M19 2H5C3.9 2 3 2.9 3 4V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V4C21 2.9 20.1 2 19 2ZM11 6H13V9H16V11H13V14H11V11H8V9H11V6ZM19 20H5V16H19V20Z"/></svg>
+        </div>
+        Bangkok Health Hospital
+      </a>
       <ul class="menu">
         <li><a href="javascript:void(0)" onclick="setCategory('all')" data-i18n="nav_all">ดูทั้งหมด</a></li>
         <li><a href="javascript:void(0)" onclick="setCategory('doctor')" data-i18n="nav_doctor">แพทย์เฉพาะทาง</a></li>
@@ -423,13 +487,82 @@
   <!-- Hero Section -->
   <header class="hero">
     <h1 data-i18n="hero_title">มาตรฐานการแพทย์สากล ดูแลคุณในทุกช่วงวัย</h1>
-    <p data-i18n="hero_subtitle">คลิกที่การ์ดรายการใดก็ได้ เพื่อเปิดดูข้อมูลเชิงลึกและทำนัดหมายผ่านเลเยอร์มาตรฐานเดียวกัน</p>
+    <p data-i18n="hero_subtitle">คลิกที่การ์ดหรือไอคอนบริการเพื่อเปิดดูข้อมูลเชิงลึกและทำนัดหมายผ่านเลเยอร์มาตรฐานเดียวกัน</p>
   </header>
+
+  <!-- Quick Icon Shortcuts Strip (ดึงจากรูปภาพไอคอนทั้ง 16 แบบ) -->
+  <section class="quick-icon-section">
+    <div class="quick-icon-grid">
+      <!-- 1. Ambulance -->
+      <div class="quick-icon-item" onclick="openDirectService('ambulance')">
+        <div class="quick-circle-icon" style="background: var(--icon-blue);">
+          <svg viewBox="0 0 24 24"><path d="M20 10H18V6H4C2.9 6 2 6.9 2 8V17H4C4 18.66 5.34 20 7 20C8.66 20 10 18.66 10 17H14C14 18.66 15.34 20 17 20C18.66 20 20 18.66 20 17H22V13L20 10ZM7 18.5C6.17 18.5 5.5 17.83 5.5 17C5.5 16.17 6.17 15.5 7 15.5C7.83 15.5 8.5 16.17 8.5 17C8.5 17.83 7.83 18.5 7 18.5ZM9 12H7V10H9V8H11V10H13V12H11V14H9V12ZM17 18.5C16.17 18.5 15.5 17.83 15.5 17C15.5 16.17 16.17 15.5 17 15.5C17.83 15.5 18.5 16.17 18.5 17C18.5 17.83 17.83 18.5 17 18.5ZM17 11.5V8.5H19.5L21.5 11.5H17Z"/></svg>
+        </div>
+        <span class="quick-icon-title" data-i18n="quick_ambulance">ฉุกเฉิน 24 ชม.</span>
+      </div>
+
+      <!-- 2. Stethoscope / Doctors -->
+      <div class="quick-icon-item" onclick="setCategory('doctor')">
+        <div class="quick-circle-icon" style="background: var(--icon-navy);">
+          <svg viewBox="0 0 24 24"><path d="M19 8C19 5.79 17.21 4 15 4C14.7 4 14.42 4.03 14.14 4.1C13.29 2.82 11.83 2 10.19 2C7.43 2 5.19 4.24 5.19 7C5.19 7.77 5.37 8.5 5.68 9.15C4.08 9.92 3 11.58 3 13.5C3 16 5 18 7.5 18H9V16H7.5C6.12 16 5 14.88 5 13.5C5 12.12 6.12 11 7.5 11H8V7C8 5.79 8.98 4.81 10.19 4.81C11.4 4.81 12.38 5.79 12.38 7V13C12.38 15.76 14.62 18 17.38 18C18.28 18 19.12 17.76 19.84 17.34C20.55 18.37 21.73 19 23.06 19C23.06 19 23 18 23 17C21.9 17 21 16.1 21 15C21 13.9 21.9 13 23 13C23 12 23.06 11 23.06 11C21.73 11 20.55 11.63 19.84 12.66C19.12 12.24 18.28 12 17.38 12C16.27 12 15.28 12.45 14.56 13.18V7C14.56 6.45 15.01 6 15.56 6C16.11 6 16.56 6.45 16.56 7V8H19Z"/></svg>
+        </div>
+        <span class="quick-icon-title" data-i18n="quick_doctors">ค้นหาแพทย์</span>
+      </div>
+
+      <!-- 3. Dental (Tooth) -->
+      <div class="quick-icon-item" onclick="openDirectService('dental')">
+        <div class="quick-circle-icon" style="background: var(--icon-deep-purple);">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 4.5 6 8C6 11 7 15 8 18C8.5 19.5 9.5 22 10.5 22C11.5 22 11.5 20 12 18C12.5 20 12.5 22 13.5 22C14.5 22 15.5 19.5 16 18C17 15 18 11 18 8C18 4.5 15.5 2 12 2Z"/></svg>
+        </div>
+        <span class="quick-icon-title" data-i18n="quick_dental">ศูนย์ทันตกรรม</span>
+      </div>
+
+      <!-- 4. Eye (Ophthalmology) -->
+      <div class="quick-icon-item" onclick="openDirectService('eye')">
+        <div class="quick-circle-icon" style="background: var(--icon-rust);">
+          <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z"/></svg>
+        </div>
+        <span class="quick-icon-title" data-i18n="quick_eye">ศูนย์จักษุ</span>
+      </div>
+
+      <!-- 5. Heart ECG Monitor -->
+      <div class="quick-icon-item" onclick="setCategory('package')">
+        <div class="quick-circle-icon" style="background: var(--icon-teal);">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V6H20V18ZM5 12.5H7.5L9 8.5L12 16L13.5 11.5L15 13.5H19V11.5H16L14.5 9.5L12 14.5L10 7.5L8.5 12.5H5V12.5Z"/></svg>
+        </div>
+        <span class="quick-icon-title" data-i18n="quick_heart">ตรวจหัวใจ EKG</span>
+      </div>
+
+      <!-- 6. Inpatient Bed -->
+      <div class="quick-icon-item" onclick="openDirectService('inpatient')">
+        <div class="quick-circle-icon" style="background: var(--icon-purple);">
+          <svg viewBox="0 0 24 24"><path d="M19 7H11V14H3V5H1V20H3V17H21V20H23V11C23 8.79 21.21 7 19 7ZM7 13C8.66 13 10 11.66 10 10C10 8.34 8.66 7 7 7C5.34 7 4 8.34 4 10C4 11.66 5.34 13 7 13Z"/></svg>
+        </div>
+        <span class="quick-icon-title" data-i18n="quick_inpatient">ห้องพักผู้ป่วย</span>
+      </div>
+
+      <!-- 7. Lab & Diagnostics -->
+      <div class="quick-icon-item" onclick="openDirectService('lab')">
+        <div class="quick-circle-icon" style="background: var(--icon-amber);">
+          <svg viewBox="0 0 24 24"><path d="M19 19C19 19.55 18.55 20 18 20H6C5.45 20 5 19.55 5 19C5 18.45 5.45 18 6 18H7V13C7 10.5 8.5 8.37 10.66 7.42L9.24 6H7V4H13.59L15 5.41V8.59L13.59 10H12.41C11.3 10 10.3 10.66 9.8 11.66C9.28 12.69 9 13.82 9 15V18H15V15C15 14.33 15.17 13.68 15.46 13.11L17.15 14.13C17.05 14.41 17 14.7 17 15V18H18C18.55 18 19 18.45 19 19Z"/></svg>
+        </div>
+        <span class="quick-icon-title" data-i18n="quick_lab">ห้องปฏิบัติการ</span>
+      </div>
+
+      <!-- 8. Wheelchair / Rehabilitation -->
+      <div class="quick-icon-item" onclick="setCategory('clinic')">
+        <div class="quick-circle-icon" style="background: var(--icon-orange);">
+          <svg viewBox="0 0 24 24"><path d="M12 4C13.1 4 14 3.1 14 2C14 0.9 13.1 0 12 0C10.9 0 10 0.9 10 2C10 3.1 10.9 4 12 4ZM19 13V9C19 7.9 18.1 7 17 7H13V13H19ZM11 11.08V8.42C8.16 8.92 6 11.39 6 14.39C6 17.7 8.7 20.39 12 20.39C15 20.39 17.47 18.23 17.97 15.39H15.89C15.43 17.11 13.87 18.39 12 18.39C9.79 18.39 8 16.6 8 14.39C8 12.52 9.28 10.96 11 11.08Z"/></svg>
+        </div>
+        <span class="quick-icon-title" data-i18n="quick_rehab">ศูนย์กายภาพ</span>
+      </div>
+    </div>
+  </section>
 
   <!-- Filter Buttons -->
   <div class="filter-wrap">
     <button class="filter-btn active" onclick="setCategory('all', this)" id="filterAll">✨ <span data-i18n="filter_all">แสดงทั้งหมด</span></button>
-    <button class="filter-btn" onclick="setCategory('doctor', this)" id="filterDoctor">🩺 <span data-i18n="filter_doctor">แพทย์เฉพาะทาง</span></button>
+    <button class="filter-btn" onclick="setCategory('doctor', this)" id="filterDoctor">👨‍⚕️ <span data-i18n="filter_doctor">แพทย์เฉพาะทาง</span></button>
     <button class="filter-btn" onclick="setCategory('package', this)" id="filterPackage">🎁 <span data-i18n="filter_package">แพ็กเกจตรวจสุขภาพ</span></button>
     <button class="filter-btn" onclick="setCategory('clinic', this)" id="filterClinic">🏥 <span data-i18n="filter_clinic">ศูนย์การแพทย์เฉพาะทาง</span></button>
   </div>
@@ -437,20 +570,17 @@
   <!-- Main Grid Container -->
   <main class="container">
     <div class="items-grid" id="mainGrid">
-      <!-- ข้อมูลถูก Render ผ่าน JavaScript -->
+      <!-- ข้อมูลถูก Render ผ่าน JavaScript พร้อม SVG Icons -->
     </div>
   </main>
 
-  <!-- ============================================== -->
-  <!-- 🌟 UNIVERSAL MODAL LAYER (รองรับ 2 ภาษา) 🌟      -->
-  <!-- ============================================== -->
+  <!-- Universal Modal Layer -->
   <div id="universalModal" class="modal-overlay" onclick="handleOverlayClick(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeUniversalModal()">&times;</button>
 
-      <!-- Modal Header -->
       <div class="modal-header-hero" id="modalHeaderBg">
-        <div class="modal-avatar-lg" id="modalIcon">🩺</div>
+        <div class="modal-avatar-circle" id="modalIconWrap"></div>
         <div>
           <span class="badge-pill" id="modalCategoryBadge" style="background: rgba(255,255,255,0.25); color: #fff;">หมวดหมู่</span>
           <h2 id="modalTitle" style="font-size: 1.45rem; font-weight: 700; margin: 4px 0;">ชื่อรายการ</h2>
@@ -458,15 +588,14 @@
         </div>
       </div>
 
-      <!-- Modal Body -->
       <div class="modal-body-content">
         <div class="modal-info-block">
-          <h4 id="blockTitle1">📌 <span data-i18n="modal_detail_header">ข้อมูลและรายละเอียด</span></h4>
+          <h4>📌 <span data-i18n="modal_detail_header">ข้อมูลและรายละเอียด</span></h4>
           <p id="modalDetail" style="color: var(--muted); font-size: 0.95rem;">-</p>
         </div>
 
         <div class="modal-info-block">
-          <h4 id="blockTitle2">📊 <span data-i18n="modal_table_header">รายละเอียด / ตารางเวลา / ราคา</span></h4>
+          <h4>📊 <span data-i18n="modal_table_header">รายละเอียด / ตารางเวลา / ราคา</span></h4>
           <table class="modal-table">
             <thead id="modalTableHead"></thead>
             <tbody id="modalTableBody"></tbody>
@@ -475,7 +604,7 @@
 
         <!-- Universal Booking Form -->
         <div class="modal-form-box">
-          <h4 style="color: var(--primary); margin-bottom: 6px;" id="modalFormTitle">📝 <span data-i18n="form_title">ทำนัดหมาย / ขอรับสิทธิ์โปรแกรมนี้</span></h4>
+          <h4 style="color: var(--primary); margin-bottom: 6px;">📝 <span data-i18n="form_title">ทำนัดหมาย / ขอรับสิทธิ์โปรแกรมนี้</span></h4>
           <p style="font-size: 0.85rem; color: var(--muted);" data-i18n="form_subtitle">กรอกข้อมูลเพื่อให้เจ้าหน้าที่ประสานงานและติดต่อกลับทันที</p>
 
           <div class="form-grid-2">
@@ -497,17 +626,29 @@
   </div>
 
   <footer>
-    <p>© 2025 Bangkok Health Medical Center. Bilingual Universal Architecture.</p>
+    <p>© 2025 Bangkok Health Medical Center. Integrated with Custom Medical Icon System.</p>
   </footer>
 
-  <!-- ============================================== -->
-  <!-- 🌟 JAVASCRIPT: ระบบ 2 ภาษา และ Universal Modal 🌟 -->
-  <!-- ============================================== -->
   <script>
-    // ภาษาปัจจุบัน (เริ่มต้น: 'th')
     let currentLang = 'th';
 
-    // 1. พจนานุกรมคำศัพท์สำหรับส่วนติดต่อผู้ใช้ (UI Dictionary)
+    // SVG Icons Map (ถอดแบบจากชุดภาพ Hospital Icon Set)
+    const SVG_ICONS = {
+      doctor: `<svg viewBox="0 0 24 24"><path d="M12 2C9.24 2 7 4.24 7 7C7 9.76 9.24 12 12 12C14.76 12 17 9.76 17 7C17 4.24 14.76 2 12 2ZM6 19C6 16.34 10 15 12 15C14 15 18 16.34 18 19V21H6V19Z"/></svg>`,
+      nurse: `<svg viewBox="0 0 24 24"><path d="M16 11C17.66 11 18.99 9.66 18.99 8C18.99 6.34 17.66 5 16 5C14.34 5 13 6.34 13 8C13 9.66 14.34 11 16 11ZM8 11C9.66 11 10.99 9.66 10.99 8C10.99 6.34 9.66 5 8 5C6.34 5 5 6.34 5 8C5 9.66 6.34 11 8 11ZM8 13C5.67 13 1 14.17 1 16.5V19H15V16.5C15 14.17 10.33 13 8 13ZM16 13C15.71 13 15.38 13.02 15.03 13.05C16.19 13.89 17 15.02 17 16.5V19H23V16.5C23 14.17 18.33 13 16 13Z"/></svg>`,
+      stethoscope: `<svg viewBox="0 0 24 24"><path d="M19 8C19 5.79 17.21 4 15 4C14.7 4 14.42 4.03 14.14 4.1C13.29 2.82 11.83 2 10.19 2C7.43 2 5.19 4.24 5.19 7C5.19 7.77 5.37 8.5 5.68 9.15C4.08 9.92 3 11.58 3 13.5C3 16 5 18 7.5 18H9V16H7.5C6.12 16 5 14.88 5 13.5C5 12.12 6.12 11 7.5 11H8V7C8 5.79 8.98 4.81 10.19 4.81C11.4 4.81 12.38 5.79 12.38 7V13C12.38 15.76 14.62 18 17.38 18C18.28 18 19.12 17.76 19.84 17.34C20.55 18.37 21.73 19 23.06 19C23.06 19 23 18 23 17C21.9 17 21 16.1 21 15C21 13.9 21.9 13 23 13C23 12 23.06 11 23.06 11C21.73 11 20.55 11.63 19.84 12.66C19.12 12.24 18.28 12 17.38 12C16.27 12 15.28 12.45 14.56 13.18V7C14.56 6.45 15.01 6 15.56 6C16.11 6 16.56 6.45 16.56 7V8H19Z"/></svg>`,
+      ecg: `<svg viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V6H20V18ZM5 12.5H7.5L9 8.5L12 16L13.5 11.5L15 13.5H19V11.5H16L14.5 9.5L12 14.5L10 7.5L8.5 12.5H5V12.5Z"/></svg>`,
+      syringe: `<svg viewBox="0 0 24 24"><path d="M19.07 4.93L17.66 3.52L15.54 5.64L14.12 4.22L12.71 5.64L14.12 7.05L11.29 9.88L9.17 7.76L7.76 9.17L9.88 11.29L3.51 17.66C3.18 17.98 3 18.42 3 18.88V21H5.12C5.58 21 6.02 20.82 6.34 20.49L12.71 14.12L14.83 16.24L16.24 14.83L14.12 12.71L16.95 9.88L18.36 11.29L19.78 9.88L18.36 8.46L20.49 6.34C21.17 5.66 21.17 4.54 20.49 3.86L19.07 4.93Z"/></svg>`,
+      hospital: `<svg viewBox="0 0 24 24"><path d="M19 2H5C3.9 2 3 2.9 3 4V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V4C21 2.9 20.1 2 19 2ZM11 6H13V9H16V11H13V14H11V11H8V9H11V6ZM19 20H5V16H19V20Z"/></svg>`,
+      ambulance: `<svg viewBox="0 0 24 24"><path d="M20 10H18V6H4C2.9 6 2 6.9 2 8V17H4C4 18.66 5.34 20 7 20C8.66 20 10 18.66 10 17H14C14 18.66 15.34 20 17 20C18.66 20 20 18.66 20 17H22V13L20 10ZM7 18.5C6.17 18.5 5.5 17.83 5.5 17C5.5 16.17 6.17 15.5 7 15.5C7.83 15.5 8.5 16.17 8.5 17C8.5 17.83 7.83 18.5 7 18.5ZM9 12H7V10H9V8H11V10H13V12H11V14H9V12ZM17 18.5C16.17 18.5 15.5 17.83 15.5 17C15.5 16.17 16.17 15.5 17 15.5C17.83 15.5 18.5 16.17 18.5 17C18.5 17.83 17.83 18.5 17 18.5ZM17 11.5V8.5H19.5L21.5 11.5H17Z"/></svg>`,
+      wheelchair: `<svg viewBox="0 0 24 24"><path d="M12 4C13.1 4 14 3.1 14 2C14 0.9 13.1 0 12 0C10.9 0 10 0.9 10 2C10 3.1 10.9 4 12 4ZM19 13V9C19 7.9 18.1 7 17 7H13V13H19ZM11 11.08V8.42C8.16 8.92 6 11.39 6 14.39C6 17.7 8.7 20.39 12 20.39C15 20.39 17.47 18.23 17.97 15.39H15.89C15.43 17.11 13.87 18.39 12 18.39C9.79 18.39 8 16.6 8 14.39C8 12.52 9.28 10.96 11 11.08Z"/></svg>`,
+      dental: `<svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 4.5 6 8C6 11 7 15 8 18C8.5 19.5 9.5 22 10.5 22C11.5 22 11.5 20 12 18C12.5 20 12.5 22 13.5 22C14.5 22 15.5 19.5 16 18C17 15 18 11 18 8C18 4.5 15.5 2 12 2Z"/></svg>`,
+      eye: `<svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z"/></svg>`,
+      bed: `<svg viewBox="0 0 24 24"><path d="M19 7H11V14H3V5H1V20H3V17H21V20H23V11C23 8.79 21.21 7 19 7ZM7 13C8.66 13 10 11.66 10 10C10 8.34 8.66 7 7 7C5.34 7 4 8.34 4 10C4 11.66 5.34 13 7 13Z"/></svg>`,
+      lab: `<svg viewBox="0 0 24 24"><path d="M19 19C19 19.55 18.55 20 18 20H6C5.45 20 5 19.55 5 19C5 18.45 5.45 18 6 18H7V13C7 10.5 8.5 8.37 10.66 7.42L9.24 6H7V4H13.59L15 5.41V8.59L13.59 10H12.41C11.3 10 10.3 10.66 9.8 11.66C9.28 12.69 9 13.82 9 15V18H15V15C15 14.33 15.17 13.68 15.46 13.11L17.15 14.13C17.05 14.41 17 14.7 17 15V18H18C18.55 18 19 18.45 19 19Z"/></svg>`
+    };
+
+    // พจนานุกรมคำศัพท์สำหรับภาษา
     const i18n = {
       th: {
         emergency_text: "ศูนย์อุบัติเหตุ-ฉุกเฉินระดับตติยภูมิ ให้บริการ 24 ชั่วโมง",
@@ -516,7 +657,15 @@
         nav_package: "แพ็กเกจสุขภาพ",
         nav_clinic: "ศูนย์ความเป็นเลิศ",
         hero_title: "มาตรฐานการแพทย์สากล ดูแลคุณในทุกช่วงวัย",
-        hero_subtitle: "คลิกที่การ์ดรายการใดก็ได้ เพื่อเปิดดูข้อมูลเชิงลึกและทำนัดหมายผ่านเลเยอร์มาตรฐานเดียวกัน",
+        hero_subtitle: "คลิกที่การ์ดหรือไอคอนบริการเพื่อเปิดดูข้อมูลเชิงลึกและทำนัดหมายผ่านเลเยอร์มาตรฐานเดียวกัน",
+        quick_ambulance: "ฉุกเฉิน 24 ชม.",
+        quick_doctors: "ค้นหาแพทย์",
+        quick_dental: "ศูนย์ทันตกรรม",
+        quick_eye: "ศูนย์จักษุ",
+        quick_heart: "ตรวจหัวใจ EKG",
+        quick_inpatient: "ห้องพักผู้ป่วย",
+        quick_lab: "ห้องแล็บ & ตรวจเลือด",
+        quick_rehab: "ศูนย์กายภาพ",
         filter_all: "แสดงทั้งหมด",
         filter_doctor: "แพทย์เฉพาะทาง",
         filter_package: "แพ็กเกจตรวจสุขภาพ",
@@ -540,10 +689,18 @@
         nav_package: "Health Packages",
         nav_clinic: "Centers of Excellence",
         hero_title: "World-Class Healthcare for Every Stage of Life",
-        hero_subtitle: "Click on any service card to view verified credentials, schedules, and book appointments via unified layer.",
+        hero_subtitle: "Click on any service card or icon shortcut to book appointments via unified layer.",
+        quick_ambulance: "24/7 ER Service",
+        quick_doctors: "Find Doctors",
+        quick_dental: "Dental Center",
+        quick_eye: "Eye Center",
+        quick_heart: "Heart & ECG",
+        quick_inpatient: "Inpatient Rooms",
+        quick_lab: "Lab & Pathology",
+        quick_rehab: "Rehab & PT",
         filter_all: "View All",
         filter_doctor: "Specialist Doctors",
-        filter_package: "Health Checkups",
+        filter_package: "Health Packages",
         filter_clinic: "Specialized Clinics",
         card_view_btn: "🔍 View Details & Book",
         modal_detail_header: "Profile & Information",
@@ -559,15 +716,14 @@
       }
     };
 
-    // 2. คลังข้อมูลสองภาษา (Bilingual Schema)
+    // ข้อมูลเชื่อมโยงกับรูปภาพไอคอน
     const portalItems = [
-      // แพทย์คนที่ 1
       {
-        id: "doc-1",
+        id: "doc-cardiology",
         type: "doctor",
         categoryName: { th: "แพทย์เฉพาะทาง", en: "Specialist Doctor" },
-        themeColor: "linear-gradient(135deg, #005a9c, #004070)",
-        icon: "🩺",
+        themeColor: "var(--icon-navy)",
+        iconKey: "stethoscope",
         title: { th: "นพ. กิตติศักดิ์ เจริญสุข", en: "Dr. Kittisak Charoensuk, M.D." },
         subtitle: { th: "ศูนย์หัวใจและหลอดเลือด", en: "Heart & Vascular Center" },
         desc: { 
@@ -595,22 +751,21 @@
           ]
         }
       },
-      // แพทย์คนที่ 2
       {
-        id: "doc-2",
+        id: "doc-dentist",
         type: "doctor",
         categoryName: { th: "แพทย์เฉพาะทาง", en: "Specialist Doctor" },
-        themeColor: "linear-gradient(135deg, #005a9c, #004070)",
-        icon: "🧠",
-        title: { th: "พญ. นันทวัน วงศ์สวัสดิ์", en: "Dr. Nantawan Wongsawat, M.D." },
-        subtitle: { th: "ศูนย์สมองและระบบประสาท", en: "Brain & Neuroscience Center" },
+        themeColor: "var(--icon-deep-purple)",
+        iconKey: "dental",
+        title: { th: "ทพญ. พิมลดา เกียรติไพบูลย์", en: "Dr. Pimlada Kiatpaiboon, D.D.S." },
+        subtitle: { th: "ศูนย์ทันตกรรมเพื่อความสวยงาม", en: "Esthetic Dentistry Center" },
         desc: { 
-          th: "แพทย์เฉพาะทางด้านโรคหลอดเลือดสมอง และการฟื้นฟูระบบประสาท", 
-          en: "Specialist in Cerebrovascular Disease, Stroke Care, and Neurological Rehabilitation." 
+          th: "ทันตแพทย์ผู้เชี่ยวชาญด้านการจัดฟันแบบใส (Invisalign) และครอบฟันเซรามิก", 
+          en: "Diamond Provider Invisalign Specialist and Esthetic Prosthodontics." 
         },
         detail: {
-          th: "แพทยศาสตรบัณฑิต มหาวิทยาลัยมหิดล, วุฒิบัตรประสาทวิทยา สถาบันประสาทวิทยา, Certificate in Stroke Management",
-          en: "M.D., Mahidol University, Board of Neurology (Neurological Institute), Certificate in Stroke Management."
+          th: "ทันตแพทยศาสตรบัณฑิต มหาวิทยาลัยมหิดล, ปริญญาโททันตกรรมบูรณะเพื่อความสวยงาม, สมาชิกสมาคมทันตแพทย์จัดฟันแห่งประเทศไทย",
+          en: "D.D.S., Mahidol University, Master of Esthetic Dentistry, Certified Invisalign Diamond Provider."
         },
         columns: {
           th: ["วันตรวจ", "ช่วงเวลา", "สถานที่"],
@@ -618,65 +773,30 @@
         },
         tableData: {
           th: [
-            ["อังคาร - พุธ", "10:00 - 16:00 น.", "ศูนย์สมอง อาคาร B ชั้น 3"],
-            ["ศุกร์", "09:00 - 15:00 น.", "ห้องตรวจสมอง 302"]
+            ["อังคาร - ศุกร์", "10:00 - 19:00 น.", "ศูนย์ทันตกรรม อาคาร B ชั้น 4"],
+            ["อาทิตย์", "09:00 - 16:00 น.", "ห้องทำหัตถการทันตกรรม 402"]
           ],
           en: [
-            ["Tue - Wed", "10:00 - 16:00", "Neuro Center, Bldg B, 3rd Fl."],
-            ["Friday", "09:00 - 15:00", "Suite 302"]
+            ["Tue - Fri", "10:00 - 19:00", "Dental Center, Bldg B, 4th Fl."],
+            ["Sunday", "09:00 - 16:00", "Dental Operatory Suite 402"]
           ]
         }
       },
-      // แพ็กเกจที่ 1
       {
-        id: "pkg-1",
+        id: "pkg-ecg-heart",
         type: "package",
         categoryName: { th: "แพ็กเกจตรวจสุขภาพ", en: "Health Check-up Package" },
-        themeColor: "linear-gradient(135deg, #059669, #047857)",
-        icon: "🎁",
-        title: { th: "Executive Health Check-up 2025", en: "Executive Health Check-up 2025" },
-        subtitle: { th: "โปรแกรมตรวจสุขภาพเชิงลึกสำหรับผู้บริหาร", en: "Comprehensive Screening for Senior Executives" },
+        themeColor: "var(--icon-teal)",
+        iconKey: "ecg",
+        title: { th: "Smart Heart & ECG Plus 2025", en: "Smart Heart & ECG Plus 2025" },
+        subtitle: { th: "โปรแกรมคัดกรองความเสี่ยงหัวใจและหลอดเลือด", en: "Cardiovascular Risk Assessment Program" },
         desc: { 
-          th: "ตรวจคัดกรองความเสี่ยงโรคหัวใจ มะเร็ง และระบบเผาผลาญ รวม 28 รายการ", 
-          en: "28 comprehensive lab tests covering cardiovascular, tumor markers, and metabolic health." 
+          th: "ตรวจคลื่นไฟฟ้าหัวใจ (EKG), สมรรถภาพหัวใจขณะออกกำลังกาย (EST) และแคลเซียมหลอดเลือด", 
+          en: "Resting ECG, Exercise Stress Test (EST), and Coronary Calcium Score (CAC)." 
         },
         detail: {
-          th: "รวมบริการอาหารว่าง, สมุดรายงานผลสุขภาพพร้อมคำแนะนำจากแพทย์เฉพาะทาง, และสิทธิประโยชน์ส่วนลดค่ายา 10%",
-          en: "Complimentary breakfast voucher, comprehensive health report book, and 10% discount on pharmacy items."
-        },
-        columns: {
-          th: ["รายการตรวจหลัก", "ผลวิเคราะห์", "ราคาปกติ / พิเศษ"],
-          en: ["Key Test Item", "Scope", "Regular / Special Price"]
-        },
-        tableData: {
-          th: [
-            ["ตรวจเลือดหาสารบ่งชี้มะเร็ง 5 ชนิด", "ครบถ้วน", "ปกติ 18,500.-"],
-            ["อัลตราซาวด์ช่องท้องทั้งหมด (Whole Abdomen)", "ความละเอียดสูง", "พิเศษ 12,900.-"],
-            ["ตรวจคลื่นไฟฟ้าหัวใจ (EKG / EST)", "แพทย์ประเมิน", "รวมในแพ็กเกจ"]
-          ],
-          en: [
-            ["5 Tumor Markers Blood Profile", "Complete", "Reg. 18,500 THB"],
-            ["Whole Abdomen Ultrasound", "High Definition", "Special 12,900 THB"],
-            ["Cardiac Stress Test (EKG / EST)", "Cardiologist Review", "Included"]
-          ]
-        }
-      },
-      // แพ็กเกจที่ 2
-      {
-        id: "pkg-2",
-        type: "package",
-        categoryName: { th: "แพ็กเกจตรวจสุขภาพ", en: "Health Check-up Package" },
-        themeColor: "linear-gradient(135deg, #059669, #047857)",
-        icon: "❤️",
-        title: { th: "Smart Heart Screening", en: "Smart Heart Screening" },
-        subtitle: { th: "โปรแกรมคัดกรองความเสี่ยงหลอดเลือดหัวใจ", en: "Cardiovascular Risk Assessment Program" },
-        desc: { 
-          th: "ตรวจสมรรถภาพหัวใจขณะออกกำลังกาย (EST) และตรวจแคลเซียมหลอดเลือด (CAC)", 
-          en: "Exercise Stress Test (EST) and Coronary Artery Calcium Score (CAC) scan." 
-        },
-        detail: {
-          th: "เหมาะสำหรับผู้มีประวัติครอบครัวเป็นโรคหัวใจ หรือมีภาวะความดันโลหิตและไขมันในเลือดสูง",
-          en: "Recommended for individuals with family history of coronary disease or hypertension."
+          th: "ประเมินความเสี่ยงกล้ามเนื้อหัวใจขาดเลือดเฉียบพลัน เหมาะสำหรับผู้มีภาวะความดันโลหิตสูงและเบาหวาน",
+          en: "Early detection of coronary ischemia for patients with diabetes or hypertension."
         },
         columns: {
           th: ["รายการตรวจ", "ระยะเวลา", "ราคาโปรโมชัน"],
@@ -684,48 +804,111 @@
         },
         tableData: {
           th: [
-            ["Coronary Calcium Score (CAC)", "15 นาที", "3,900.-"],
-            ["Echo & Exercise Stress Test", "45 นาที", "6,500.-"],
-            ["รวมแพ็กเกจตรวจคู่ (Special Duo)", "ประมาณ 1.5 ชม.", "8,900.- (ประหยัด 20%)"]
+            ["ตรวจคลื่นไฟฟ้าหัวใจ (EKG 12-Leads)", "15 นาที", "รวมในแพ็กเกจ"],
+            ["เดินสายพานวิ่ง (Exercise Stress Test)", "45 นาที", "พิเศษ 4,900.-"],
+            ["แคลเซียมหลอดเลือดหัวใจ (CAC Scan)", "15 นาที", "พิเศษ 3,900.-"]
           ],
           en: [
-            ["Coronary Calcium Score (CAC)", "15 mins", "3,900 THB"],
-            ["Echo & Exercise Stress Test", "45 mins", "6,500 THB"],
-            ["Combined Duo Package", "approx. 1.5 hrs", "8,900 THB (Save 20%)"]
+            ["Resting 12-Leads EKG", "15 mins", "Included"],
+            ["Treadmill Exercise Stress Test", "45 mins", "Special 4,900 THB"],
+            ["Coronary Artery Calcium Scan", "15 mins", "Special 3,900 THB"]
           ]
         }
       },
-      // ศูนย์ความเป็นเลิศ
       {
-        id: "cln-1",
-        type: "clinic",
-        categoryName: { th: "ศูนย์ความเป็นเลิศ", en: "Center of Excellence" },
-        themeColor: "linear-gradient(135deg, #d97706, #b45309)",
-        icon: "🏥",
-        title: { th: "ศูนย์กระดูก ข้อ และข้อเข่าครบวงจร", en: "Comprehensive Bone & Joint Center" },
-        subtitle: { th: "อาคาร A ชั้น 1 (เปิดบริการ 24 ชม.)", en: "Building A, 1st Floor (Open 24/7)" },
+        id: "pkg-vaccine",
+        type: "package",
+        categoryName: { th: "แพ็กเกจตรวจสุขภาพ", en: "Health Check-up Package" },
+        themeColor: "var(--icon-rust)",
+        iconKey: "syringe",
+        title: { th: "Vaccine & Immunity Booster", en: "Vaccine & Immunity Booster" },
+        subtitle: { th: "โปรแกรมสร้างภูมิคุ้มกันผู้ใหญ่และผู้สูงวัย", en: "Adult & Senior Immunization Program" },
         desc: { 
-          th: "เทคโนโลยีผ่าตัดส่องกล้องแผลเล็ก ฟื้นตัวไว พร้อมทีมกายภาพบำบัดเฉพาะบุคคล", 
-          en: "Minimally invasive arthroscopic surgery and customized post-op rehabilitation." 
+          th: "วัคซีนไข้หวัดใหญ่ 4 สายพันธุ์, ปอดอักเสบ และวัคซีนป้องกันงูสวัดรุ่นใหม่", 
+          en: "Quadrivalent Influenza, Pneumococcal conjugate, and Shingles vaccine." 
         },
         detail: {
-          th: "ให้บริการวินิจฉัยและรักษาอาการปวดข้อเข่า ข้อสะโพก กระดูกสันหลัง และเวชศาสตร์การกีฬาด้วยหุ่นยนต์ช่วยผ่าตัด",
-          en: "Robotic-assisted joint replacement, sports medicine, and precision spine treatments."
+          th: "เสริมเกราะคุ้มกันโรคติดต่อทางเดินหายใจ ดูแลและให้คำปรึกษาโดยแพทย์เฉพาะทางด้านโรคติดเชื้อ",
+          en: "Enhance immune defense against respiratory infections guided by infectious disease specialists."
         },
         columns: {
-          th: ["บริการ", "เวลาเปิดทำการ", "เบอร์โทรภายใน"],
-          en: ["Clinical Service", "Operating Hours", "Ext. Number"]
+          th: ["ชนิดวัคซีน", "จำนวนเข็ม", "ราคาพิเศษ"],
+          en: ["Vaccine Type", "Doses", "Price"]
         },
         tableData: {
           th: [
-            ["คลินิกข้อเข่าและข้อสะโพก", "08:00 - 20:00 น.", "โทร. 1104"],
-            ["ศูนย์เวชศาสตร์การกีฬาและกายภาพ", "08:00 - 18:00 น.", "โทร. 1105"],
-            ["หน่วยอุบัติเหตุกระดูกหักฉุกเฉิน", "24 ชั่วโมง", "โทร. 1719"]
+            ["วัคซีนไข้หวัดใหญ่ 4 สายพันธุ์ (2025)", "1 เข็ม", "990.-"],
+            ["วัคซีนปอดอักเสบชนิดคอนจูเกต 15 สายพันธุ์", "1 เข็ม", "3,500.-"],
+            ["แพ็กเกจคู่รักภูมิคุ้มกันครบชุด", "2 ท่าน", "7,900.- (ประหยัด 25%)"]
           ],
           en: [
-            ["Knee & Hip Specialty Clinic", "08:00 - 20:00", "Ext. 1104"],
-            ["Sports Medicine & Physical Therapy", "08:00 - 18:00", "Ext. 1105"],
-            ["Emergency Fracture Unit", "24 Hours Daily", "Direct: 1719"]
+            ["Quadrivalent Flu Vaccine (2025)", "1 Dose", "990 THB"],
+            ["15-Valent Pneumococcal Conjugate", "1 Dose", "3,500 THB"],
+            ["Immunity Duo Package for 2", "2 Persons", "7,900 THB (Save 25%)"]
+          ]
+        }
+      },
+      {
+        id: "cln-eye",
+        type: "clinic",
+        categoryName: { th: "ศูนย์ความเป็นเลิศ", en: "Center of Excellence" },
+        themeColor: "var(--icon-rust)",
+        iconKey: "eye",
+        title: { th: "ศูนย์จักษุและเลสิกไร้ใบมีด (Femto-LASIK)", en: "Eye & Advanced Refractive Center" },
+        subtitle: { th: "อาคาร A ชั้น 3 (08:00 - 20:00 น.)", en: "Building A, 3rd Floor (08:00 - 20:00)" },
+        desc: { 
+          th: "เทคโนโลยีรักษาต้อกระจกด้วยเลเซอร์ ผ่าตัดแก้ไขสายตาสั้น-ยาว และจอประสาทตาครบวงจร", 
+          en: "Femtosecond Laser cataract surgery, blade-free LASIK, and vitreoretinal treatments." 
+        },
+        detail: {
+          th: "ให้บริการตรวจวัดสายตาด้วยระบบดิจิทัล 3 มิติ และตรวจคัดกรองเบาหวานขึ้นจอประสาทตาด้วยกล้องความเร็วสูง",
+          en: "Equipped with 3D high-speed fundus imaging and personalized refractive correction suites."
+        },
+        columns: {
+          th: ["บริการหลัก", "เวลาเปิดทำการ", "ติดต่อ"],
+          en: ["Service", "Hours", "Contact"]
+        },
+        tableData: {
+          th: [
+            ["คลินิกเลสิกและแก้ไขสายตา", "08:00 - 18:00 น.", "โทร. 1301"],
+            ["คลินิกต้อกระจกและจอประสาทตา", "08:00 - 20:00 น.", "โทร. 1302"],
+            ["บริการอุบัติเหตุทางดวงตา 24 ชม.", "24 ชั่วโมง", "โทร. 1719"]
+          ],
+          en: [
+            ["Refractive & LASIK Suite", "08:00 - 18:00", "Ext. 1301"],
+            ["Cataract & Retina Clinic", "08:00 - 20:00", "Ext. 1302"],
+            ["24/7 Ocular Trauma Unit", "24 Hours Daily", "Direct: 1719"]
+          ]
+        }
+      },
+      {
+        id: "cln-rehab",
+        type: "clinic",
+        categoryName: { th: "ศูนย์ความเป็นเลิศ", en: "Center of Excellence" },
+        themeColor: "var(--icon-orange)",
+        iconKey: "wheelchair",
+        title: { th: "ศูนย์เวชศาสตร์ฟื้นฟูและกายภาพบำบัด", en: "Physical Therapy & Rehabilitation" },
+        subtitle: { th: "อาคาร B ชั้น 2 (08:00 - 19:00 น.)", en: "Building B, 2nd Floor (08:00 - 19:00)" },
+        desc: { 
+          th: "ฟื้นฟูสมรรถภาพผู้ป่วยโรคหลอดเลือดสมอง ออฟฟิศซินโดรม และการบาดเจ็บจากการเล่นกีฬา", 
+          en: "Robotic gait rehabilitation, stroke recovery, and advanced sports injury physical therapy." 
+        },
+        detail: {
+          th: "ใช้หุ่นยนต์ฝึกเดินเสมือนจริง ธาราบำบัด (Hydrotherapy) และคลื่นกระแทกช็อกเวฟ (Shockwave Therapy) ลดปวดเรื้อรัง",
+          en: "State-of-the-art robotic gait training, hydrotherapy pools, and radial shockwave pain relief."
+        },
+        columns: {
+          th: ["คลินิกเฉพาะทาง", "เวลาทำการ", "นัดหมาย"],
+          en: ["Specialized Clinic", "Hours", "Booking"]
+        },
+        tableData: {
+          th: [
+            ["คลินิกฟื้นฟูอัมพฤกษ์-อัมพาต", "08:00 - 18:00 น.", "โทร. 1204"],
+            ["คลินิกกายภาพบำบัดกล้ามเนื้อและข้อ", "08:00 - 19:00 น.", "โทร. 1205"]
+          ],
+          en: [
+            ["Neuro-Rehabilitation Clinic", "08:00 - 18:00", "Ext. 1204"],
+            ["Musculoskeletal Physical Therapy", "08:00 - 19:00", "Ext. 1205"]
           ]
         }
       }
@@ -734,16 +917,13 @@
     let currentItem = null;
     let currentFilter = 'all';
 
-    // 3. ฟังก์ชันสลับภาษา (Language Switcher)
     function setLanguage(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
 
-      // ปรับสถานะปุ่มภาษา
       document.getElementById('btnTh').classList.toggle('active', lang === 'th');
       document.getElementById('btnEn').classList.toggle('active', lang === 'en');
 
-      // อัปเดตข้อความ UI ที่มี data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (i18n[lang][key]) {
@@ -751,20 +931,16 @@
         }
       });
 
-      // ปรับ Placeholder ของ Input
       document.getElementById('custName').placeholder = i18n[lang].form_name_placeholder;
       document.getElementById('custTel').placeholder = i18n[lang].form_tel_placeholder;
 
-      // วาดการ์ดใหม่ตามภาษาปัจจุบัน
       renderCards();
 
-      // หาก Modal กำลังเปิดอยู่ ให้อัปเดตข้อมูลใน Modal ตามภาษาใหม่ทันที
       if (currentItem && document.getElementById('universalModal').classList.contains('active')) {
         openUniversalModal(currentItem.id);
       }
     }
 
-    // วาดการ์ดทั้งหมดลงหน้าเว็บ
     function renderCards() {
       const grid = document.getElementById('mainGrid');
       grid.innerHTML = '';
@@ -774,9 +950,9 @@
         : portalItems.filter(item => item.type === currentFilter);
 
       filtered.forEach(item => {
-        let badgeColor = item.type === 'doctor' 
-          ? '#eff6ff; color: #2563eb' 
-          : (item.type === 'package' ? '#ecfdf5; color: #059669' : '#fffbeb; color: #d97706');
+        let badgeStyle = item.type === 'doctor' 
+          ? 'background: #eff6ff; color: #2563eb;' 
+          : (item.type === 'package' ? 'background: #ecfdf5; color: #059669;' : 'background: #fffbeb; color: #d97706;');
 
         const card = document.createElement('div');
         card.className = 'unified-card';
@@ -784,9 +960,11 @@
         card.innerHTML = `
           <div>
             <div class="card-top">
-              <div class="card-icon-badge">${item.icon}</div>
+              <div class="card-circle-icon" style="background: ${item.themeColor};">
+                ${SVG_ICONS[item.iconKey]}
+              </div>
               <div>
-                <span class="badge-pill" style="background: ${badgeColor};">${item.categoryName[currentLang]}</span>
+                <span class="badge-pill" style="${badgeStyle}">${item.categoryName[currentLang]}</span>
                 <div class="card-title">${item.title[currentLang]}</div>
               </div>
             </div>
@@ -798,35 +976,53 @@
       });
     }
 
-    // กรองประเภท
     function setCategory(type, btnElement) {
       currentFilter = type;
       if (btnElement) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btnElement.classList.add('active');
+      } else {
+        const idMap = { all: 'filterAll', doctor: 'filterDoctor', package: 'filterPackage', clinic: 'filterClinic' };
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        if (idMap[type]) document.getElementById(idMap[type]).classList.add('active');
       }
       renderCards();
     }
 
-    // เปิด Universal Modal โดยรับ id กลาง
+    // เปิดหน้าต่างเมื่อคลิก Quick Shortcuts
+    function openDirectService(serviceKey) {
+      if (serviceKey === 'ambulance') {
+        alert(currentLang === 'th' ? "🚨 สายด่วนศูนย์อุบัติเหตุ-ฉุกเฉิน 24 ชม. โทร. 1719 หรือ 02-310-3000 พร้อมทีมแพทย์ฉุกเฉินออกปฏิบัติการทันที" : "🚨 24/7 Trauma Hotline: Call 1719 or +66 2 310 3000 for emergency mobile ICU response.");
+      } else if (serviceKey === 'dental') {
+        openUniversalModal('doc-dentist');
+      } else if (serviceKey === 'eye') {
+        openUniversalModal('cln-eye');
+      } else if (serviceKey === 'inpatient') {
+        alert(currentLang === 'th' ? "🏨 แผนกผู้ป่วยใน (Inpatient Ward): ติดต่อประสานงานจองห้องพักผู้ป่วยพิเศษและสอบถามสิทธิ์ประกัน โทร. 1109" : "🏨 Inpatient Care: For room reservations and insurance liaison, contact Ext. 1109.");
+      } else if (serviceKey === 'lab') {
+        openUniversalModal('pkg-vaccine');
+      }
+    }
+
     function openUniversalModal(id) {
       const item = portalItems.find(i => i.id === id);
       if (!item) return;
       currentItem = item;
 
-      // ปรับแต่ง Header ตามหมวดหมู่และภาษา
       document.getElementById('modalHeaderBg').style.background = item.themeColor;
-      document.getElementById('modalIcon').textContent = item.icon;
+      
+      const iconWrap = document.getElementById('modalIconWrap');
+      iconWrap.style.background = 'rgba(255, 255, 255, 0.2)';
+      iconWrap.innerHTML = SVG_ICONS[item.iconKey];
+
       document.getElementById('modalCategoryBadge').textContent = item.categoryName[currentLang];
       document.getElementById('modalTitle').textContent = item.title[currentLang];
       document.getElementById('modalSubtitle').textContent = item.subtitle[currentLang];
       document.getElementById('modalDetail').textContent = item.detail[currentLang];
 
-      // สร้างหัวตารางตามภาษา
       const thead = document.getElementById('modalTableHead');
       thead.innerHTML = `<tr>${item.columns[currentLang].map(col => `<th>${col}</th>`).join('')}</tr>`;
 
-      // สร้างแถวข้อมูลตารางตามภาษา
       const tbody = document.getElementById('modalTableBody');
       tbody.innerHTML = '';
       item.tableData[currentLang].forEach(row => {
@@ -835,12 +1031,10 @@
         tbody.appendChild(tr);
       });
 
-      // แสดง Modal
       document.getElementById('universalModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    // ปิด Modal
     function closeUniversalModal() {
       document.getElementById('universalModal').classList.remove('active');
       document.body.style.overflow = 'auto';
@@ -854,7 +1048,6 @@
       if (e.key === 'Escape') closeUniversalModal();
     });
 
-    // ยืนยันฟอร์มสองภาษา
     function submitUniversalForm() {
       const name = document.getElementById('custName').value.trim();
       const tel = document.getElementById('custTel').value.trim();
@@ -879,7 +1072,7 @@
       closeUniversalModal();
     }
 
-    // เริ่มต้นแสดงผลหน้าเว็บด้วยภาษาไทย
+    // เริ่มต้นทำงานด้วยภาษาไทย
     setLanguage('th');
   </script>
 </body>
